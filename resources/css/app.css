@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+html,
+body {
+    font-family: "Open Sans", sans-serif;
+}
+.navi-bar,
+.drawer-nav,
+.bg-light-blue {
+    background-color: #e5ebf5;
+}
+.home-header {
+    background-color: #e5ebf5;
+    padding: 80px 0 80px 0;
+}
+.text-gradient-home {
+    background: -webkit-linear-gradient(135deg, #5b8dfe 0%, #ff5f5f 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
