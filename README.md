@@ -7,6 +7,10 @@ Created for companies to have their own place for the HR department to advertise
 -   ReactJS Frontend via InertiaJS Laravel
 -   The industry standard database - MySQL
 
+## WORK IS IN PROGRESS
+
+Current status: BUILDING A BASIC LAYOUT
+
 ## License
 
 The LaraBoard app is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
