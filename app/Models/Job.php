@@ -27,6 +27,10 @@ class Job extends Model
         'deleted_at'
     ];
 
+    protected $appends = [
+        'isExpired'
+    ];
+
     public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()
@@ -41,6 +45,10 @@ class Job extends Model
 
     public function scopeNotExpired($query) {
         return $query->where('expires_at', '>', now());
+    }
+
+    public function getIsExpiredAttribute() {
+        return $this->expires_at < now();
     }
 
     public function user()

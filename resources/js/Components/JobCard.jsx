@@ -15,25 +15,27 @@ export default function JobCard({ job }) {
             <div className="mt-3 flex items-center space-x-5">
                 <div className="text-neutral-600 flex items-center">
                     <img src="/assets/images/tag.svg" className="w-6" />{" "}
-                    <span class="ml-1">{job.department.department_name}</span>
+                    <span className="ml-1">
+                        {job.department.department_name}
+                    </span>
                 </div>
                 <div className="text-neutral-600 flex items-center">
                     <img
                         src="/assets/images/location.svg"
                         className="w-4 h-4"
                     />{" "}
-                    <span class="ml-1">{job.location.location_name}</span>
+                    <span className="ml-1">{job.location.location_name}</span>
                 </div>
                 <div className="text-neutral-600 flex items-center">
                     <img src="/assets/images/money.svg" className="w-4 h-4" />{" "}
-                    <span class="ml-1">{job.salary}</span>
+                    <span className="ml-1">{job.salary}</span>
                 </div>
                 <div className="text-neutral-600 flex items-center">
                     <img
                         src="/assets/images/contract.svg"
                         className="w-4 h-4"
                     />{" "}
-                    <span class="ml-1">
+                    <span className="ml-1">
                         {job.contract_type.contract_type_name}
                     </span>
                 </div>

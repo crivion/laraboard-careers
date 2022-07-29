@@ -2,15 +2,15 @@ export default function JobFilters() {
     return (
         <div className="rounded-lg bg-light-blue px-5 py-3 ml-5">
             <form name="jobFilters" id="jobFilters">
-                <h3 class="text-lg font-semibold text-neutral-800 mt-5 mb-2">
+                <h3 className="text-lg font-semibold text-neutral-800 mt-5 mb-2">
                     Search By Keyword
                 </h3>
 
-                <div class="flex items-center bg-white rounded py-2 px-3 mt-2 mb-5">
+                <div className="flex items-center bg-white rounded py-2 px-3 mt-2 mb-5">
                     <div>
                         <img
                             src="/assets/images/search.svg"
-                            class="w-4 h-4 mr-2"
+                            className="w-4 h-4 mr-2"
                         />
                     </div>
                     <div className="flex-1">
@@ -24,11 +24,11 @@ export default function JobFilters() {
                     </div>
                 </div>
 
-                <h3 class="text-lg font-semibold text-neutral-800">
+                <h3 className="text-lg font-semibold text-neutral-800">
                     Department
                 </h3>
 
-                <div class="flex items-center bg-white rounded py-2 px-3 mt-2 mb-5">
+                <div className="flex items-center bg-white rounded py-2 px-3 mt-2 mb-5">
                     <div>
                         <img
                             src="/assets/images/tag.svg"
@@ -48,8 +48,10 @@ export default function JobFilters() {
                     </div>
                 </div>
 
-                <h3 class="text-lg font-semibold text-neutral-800">Job Type</h3>
-                <div class="flex items-center bg-white rounded py-2 px-3 mt-2 mb-5">
+                <h3 className="text-lg font-semibold text-neutral-800">
+                    Job Type
+                </h3>
+                <div className="flex items-center bg-white rounded py-2 px-3 mt-2 mb-5">
                     <div>
                         <img
                             src="/assets/images/contract.svg"
@@ -69,8 +71,10 @@ export default function JobFilters() {
                     </div>
                 </div>
 
-                <h3 class="text-lg font-semibold text-neutral-800">Location</h3>
-                <div class="flex items-center bg-white rounded py-2 px-3 mt-2 mb-5">
+                <h3 className="text-lg font-semibold text-neutral-800">
+                    Location
+                </h3>
+                <div className="flex items-center bg-white rounded py-2 px-3 mt-2 mb-5">
                     <div>
                         <img
                             src="/assets/images/location.svg"

@@ -36,7 +36,9 @@ export default function Homepage({ jobs }) {
             <div className="max-w-screen-xl mx-auto md:flex space-20 px-3">
                 <div className="md:w-2/3">
                     {jobs?.data.length > 0
-                        ? jobs.data.map((job) => <JobCard job={job} />)
+                        ? jobs.data.map((job) => (
+                              <JobCard key={job.id} job={job} />
+                          ))
                         : "No open positions"}
 
                     <div className="mt-5 mb-10">

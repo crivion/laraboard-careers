@@ -11,6 +11,13 @@ export default function JobDetails({ job }) {
             <Head title="Junior Graphic Designer -LaraBoard" />
             <div className="inner-header mb-5">
                 <div className="max-w-screen-xl mx-auto px-3 md:text-center">
+                    {job.isExpired && (
+                        <div className="bg-red-100 mb-3 border border-red-400 text-red-700 px-4 py-3 rounded relative">
+                            This job is expired and only you can see it while
+                            being logged in
+                        </div>
+                    )}
+
                     <h1 className="jobTitle text-3xl font-semibold">
                         {job.job_title}
                     </h1>
@@ -88,7 +95,7 @@ export default function JobDetails({ job }) {
                 <div className="md:w-1/3 pt-10 md:pt-0">
                     <div className="rounded-lg bg-light-blue p-5 ml-5 mb-6">
                         <h3 className="title text-xl font-semibold mb-3">
-                            HR Contact Details
+                            HR Representative
                         </h3>
                         <h4 className="text-lg text-neutral-800">
                             {job.user.name}
