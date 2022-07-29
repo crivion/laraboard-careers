@@ -1,21 +1,21 @@
 import { Link } from "@inertiajs/inertia-react";
 
-export default function JobCard() {
+export default function JobCard({ job }) {
     return (
         <div className="rounded-lg p-5 border border-gray-100 shadow-sm mb-4 bg-white">
             <Link
                 href={route("job-details", {
-                    slug: "junior-graphic-designer-web",
+                    slug: job.slug,
                 })}
                 className="text-lg hover:text-neutral-800 text-blue-800 font-bold block"
             >
-                Junior Graphic Designer (Web)
+                {job.job_title}
             </Link>
 
             <div className="mt-3 flex items-center space-x-5">
                 <div className="text-neutral-600 flex items-center">
                     <img src="/assets/images/tag.svg" className="w-6" />{" "}
-                    <span class="ml-1">Graphic Design</span>
+                    <span class="ml-1">{job.department.department_name}</span>
                 </div>
                 <div className="text-neutral-600 flex items-center">
                     <img

@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Job;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,11 +17,25 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        // create admin user
+        User::factory()->create([
+            'name' => 'Platform Admin',
+            'email' => 'test@example.com',
+            'user_type' => 'admin'
+        ]);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        // create hr-representatives
+        User::factory(5)->create();
+
+        // seed contract types, departments and locations
+        $this->call([
+            ContractTypeSeeder::class,
+            DepartmentSeeder::class,
+            LocationSeeder::class,
+        ]);
+
+        // seed jobs
+        Job::factory(20)->create();
+        
     }
 }

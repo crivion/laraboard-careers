@@ -5,9 +5,9 @@ import JobCard from "@/Components/JobCard";
 import { usePage } from "@inertiajs/inertia-react";
 import JobFilters from "@/Components/JobFilters";
 
-export default function Welcome() {
+export default function Homepage({ jobs }) {
     const { images } = usePage().props;
-    const loop = [1, 2, 3, 4, 5];
+    console.log(jobs);
 
     return (
         <Front>
@@ -35,9 +35,28 @@ export default function Welcome() {
 
             <div className="max-w-screen-xl mx-auto md:flex space-20 px-3">
                 <div className="md:w-2/3">
-                    {loop.map((i) => {
-                        return <JobCard />;
-                    })}
+                    {jobs?.data.length > 0
+                        ? jobs.data.map((job) => <JobCard job={job} />)
+                        : "No open positions"}
+
+                    <div className="mt-5 mb-10">
+                        {jobs?.prev_page_url && (
+                            <Link
+                                href={jobs.prev_page_url}
+                                className="rounded border-2 px-4 py-1.5 font-medium text-neutral-500 border-neutral-400 hover:border-blue-500 hover:text-blue-500"
+                            >
+                                Previous
+                            </Link>
+                        )}
+                        {jobs?.next_page_url && (
+                            <Link
+                                href={jobs?.next_page_url}
+                                className="rounded border-2 px-4 py-1.5 font-medium text-neutral-500 border-neutral-400 hover:border-blue-500 hover:text-blue-500"
+                            >
+                                Next
+                            </Link>
+                        )}
+                    </div>
                 </div>
 
                 <div className="md:w-1/3 pt-10 md:pt-0">

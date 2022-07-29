@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Job extends Model
 {
-    use HasFactory;
+    use HasFactory, HasSlug;
 
     protected $fillable = [
         'job_title',
@@ -24,4 +26,37 @@ class Job extends Model
         'updated_at',
         'deleted_at'
     ];
+
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('job_title')
+            ->saveSlugsTo('slug');
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    public function scopeNotExpired($query) {
+        return $query->where('expires_at', '>', now());
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function department() {
+        return $this->belongsTo(Department::class);
+    }
+
+    public function location() {
+        return $this->belongsTo(Location::class);
+    }
+
+    public function contractType() {
+        return $this->belongsTo(ContractType::class);
+    }
 }

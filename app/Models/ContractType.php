@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Locations extends Model
+class ContractType extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'location_name',
+        'contract_type_name',
     ];
 
     // no timestamps
