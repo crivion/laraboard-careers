@@ -3,10 +3,16 @@ import NavLink from "@/Components/NavLink";
 import { Link } from "@inertiajs/inertia-react";
 import MobileNavbar from "@/Components/MobileNavbar";
 
-export default function Navbar() {
+export default function Navbar({ scroll }) {
     return (
         <>
-            <nav className="navi-bar fixed inset-x-0 bg-white z-20">
+            <nav
+                className={
+                    scroll
+                        ? "bg-white shadow-md fixed inset-x-0 z-20"
+                        : "navi-bar fixed inset-x-0 z-20"
+                }
+            >
                 <div className="max-w-screen-xl mx-auto px-3">
                     <div className="flex justify-between items-center">
                         <div className="flex items-center py-1">

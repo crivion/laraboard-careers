@@ -4,9 +4,15 @@ import Front from "@/Layouts/Front";
 import JobCard from "@/Components/JobCard";
 import { usePage } from "@inertiajs/inertia-react";
 import JobFilters from "@/Components/JobFilters";
-import t from "@/Hooks/translate";
+import t from "@/Hooks/useTranslate";
 
-export default function Homepage({ jobs, lang }) {
+export default function Homepage({
+    jobs,
+    departments,
+    contractTypes,
+    locations,
+    lang,
+}) {
     const { images } = usePage().props;
 
     return (
@@ -62,7 +68,12 @@ export default function Homepage({ jobs, lang }) {
                 </div>
 
                 <div className="md:w-1/3 pt-10 md:pt-0">
-                    <JobFilters lang={lang} />
+                    <JobFilters
+                        lang={lang}
+                        departments={departments}
+                        contractTypes={contractTypes}
+                        locations={locations}
+                    />
                 </div>
             </div>
         </Front>

@@ -1,4 +1,4 @@
-export default function translate(key, translations) {
+export default function useTranslate(key, translations) {
     if (translations[key]) {
         return translations[key];
     }

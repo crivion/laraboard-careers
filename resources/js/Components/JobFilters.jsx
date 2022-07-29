@@ -1,6 +1,11 @@
-import t from "@/Hooks/translate";
+import t from "@/Hooks/useTranslate";
 
-export default function JobFilters({ lang }) {
+export default function JobFilters({
+    lang,
+    departments,
+    contractTypes,
+    locations,
+}) {
     return (
         <div className="rounded-lg bg-light-blue px-5 py-3 ml-5">
             <form name="jobFilters" id="jobFilters">
@@ -20,7 +25,7 @@ export default function JobFilters({ lang }) {
                             type="text"
                             name="keyword"
                             id="keyword"
-                            placeholder="Job title, keywords, etc."
+                            placeholder={t("Job title, keywords, etc.", lang)}
                             className="w-full border-0 outline-0 focus:ring-0"
                         />
                     </div>
@@ -43,9 +48,17 @@ export default function JobFilters({ lang }) {
                             id="department"
                             className="w-full border-0 outline-0 focus:ring-0"
                         >
-                            <option value="">All Departments</option>
-                            <option value="1">Department 1</option>
-                            <option value="2">Department 2</option>
+                            <option value="">
+                                {t("All Departments", lang)}
+                            </option>
+                            {departments.map((department) => (
+                                <option
+                                    key={`department-${department.id}`}
+                                    value={department.id}
+                                >
+                                    {department.department_name}
+                                </option>
+                            ))}
                         </select>
                     </div>
                 </div>
@@ -66,9 +79,12 @@ export default function JobFilters({ lang }) {
                             id="contractType"
                             className="w-full border-0 outline-0 focus:ring-0"
                         >
-                            <option value="">All Contracts</option>
-                            <option value="1">Full Time</option>
-                            <option value="2">Part Time</option>
+                            <option value="">{t("All Contracts", lang)}</option>
+                            {contractTypes.map((ct) => (
+                                <option key={`ct-${ct.id}`} value={ct.id}>
+                                    {ct.contract_type_name}
+                                </option>
+                            ))}
                         </select>
                     </div>
                 </div>
@@ -85,13 +101,16 @@ export default function JobFilters({ lang }) {
                     </div>
                     <div className="flex-1">
                         <select
-                            name="department"
-                            id="department"
+                            name="location"
+                            id="location"
                             className="w-full border-0 outline-0 focus:ring-0"
                         >
-                            <option value="">All Locations</option>
-                            <option value="1">Department 1</option>
-                            <option value="2">Department 2</option>
+                            <option value="">{t("All Locations", lang)}</option>
+                            {locations.map((loc) => (
+                                <option key={`loc-${loc.id}`} value={loc.id}>
+                                    {loc.location_name}
+                                </option>
+                            ))}
                         </select>
                     </div>
                 </div>

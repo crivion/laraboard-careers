@@ -5,5 +5,9 @@
     "Department": "Department",
     "Job Type": "Job Type",
     "Location": "Location",
-    "Apply Filters": "Apply Filters"
+    "Apply Filters": "Apply Filters",
+    "All Departments": "All Departments",
+    "All Contracts": "All Contracts",
+    "All Locations": "All Locations",
+    "Job title, keywords, etc.": "Job title, keywords, etc."
 }
