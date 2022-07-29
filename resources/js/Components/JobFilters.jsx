@@ -1,9 +1,11 @@
-export default function JobFilters() {
+import t from "@/Hooks/translate";
+
+export default function JobFilters({ lang }) {
     return (
         <div className="rounded-lg bg-light-blue px-5 py-3 ml-5">
             <form name="jobFilters" id="jobFilters">
                 <h3 className="text-lg font-semibold text-neutral-800 mt-5 mb-2">
-                    Search By Keyword
+                    {t("Search By Keyword", lang)}
                 </h3>
 
                 <div className="flex items-center bg-white rounded py-2 px-3 mt-2 mb-5">
@@ -25,7 +27,7 @@ export default function JobFilters() {
                 </div>
 
                 <h3 className="text-lg font-semibold text-neutral-800">
-                    Department
+                    {t("Department", lang)}
                 </h3>
 
                 <div className="flex items-center bg-white rounded py-2 px-3 mt-2 mb-5">
@@ -49,7 +51,7 @@ export default function JobFilters() {
                 </div>
 
                 <h3 className="text-lg font-semibold text-neutral-800">
-                    Job Type
+                    {t("Job Type", lang)}
                 </h3>
                 <div className="flex items-center bg-white rounded py-2 px-3 mt-2 mb-5">
                     <div>
@@ -72,7 +74,7 @@ export default function JobFilters() {
                 </div>
 
                 <h3 className="text-lg font-semibold text-neutral-800">
-                    Location
+                    {t("Location", lang)}
                 </h3>
                 <div className="flex items-center bg-white rounded py-2 px-3 mt-2 mb-5">
                     <div>
@@ -96,7 +98,7 @@ export default function JobFilters() {
 
                 <div className="flex justify-center mt-8 mb-3">
                     <button className="bg-blue-800 text-white font-semibold py-2.5 px-8 rounded">
-                        Apply Filters
+                        {t("Apply Filters", lang)}
                     </button>
                 </div>
             </form>

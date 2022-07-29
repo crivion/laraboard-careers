@@ -4,10 +4,10 @@ import Front from "@/Layouts/Front";
 import JobCard from "@/Components/JobCard";
 import { usePage } from "@inertiajs/inertia-react";
 import JobFilters from "@/Components/JobFilters";
+import t from "@/Hooks/translate";
 
-export default function Homepage({ jobs }) {
+export default function Homepage({ jobs, lang }) {
     const { images } = usePage().props;
-    console.log(jobs);
 
     return (
         <Front>
@@ -39,7 +39,7 @@ export default function Homepage({ jobs }) {
                         ? jobs.data.map((job) => (
                               <JobCard key={job.id} job={job} />
                           ))
-                        : "No open positions"}
+                        : t("No open positions", lang)}
 
                     <div className="mt-5 mb-10">
                         {jobs?.prev_page_url && (
@@ -47,22 +47,22 @@ export default function Homepage({ jobs }) {
                                 href={jobs.prev_page_url}
                                 className="rounded border-2 px-4 py-1.5 font-medium text-neutral-500 border-neutral-400 hover:border-blue-500 hover:text-blue-500"
                             >
-                                Previous
+                                {t("Previous", lang)}
                             </Link>
                         )}
                         {jobs?.next_page_url && (
                             <Link
-                                href={jobs?.next_page_url}
+                                href={jobs.next_page_url}
                                 className="rounded border-2 px-4 py-1.5 font-medium text-neutral-500 border-neutral-400 hover:border-blue-500 hover:text-blue-500"
                             >
-                                Next
+                                {t("Next", lang)}
                             </Link>
                         )}
                     </div>
                 </div>
 
                 <div className="md:w-1/3 pt-10 md:pt-0">
-                    <JobFilters />
+                    <JobFilters lang={lang} />
                 </div>
             </div>
         </Front>
