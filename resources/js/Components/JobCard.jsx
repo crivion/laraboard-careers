@@ -18,7 +18,7 @@ export default function JobCard() {
                         src="/assets/images/location.svg"
                         className="w-4 h-4"
                     />{" "}
-                    <span class="ml-1">London, UK</span>
+                    <span class="ml-1">New York, US</span>
                 </div>
                 <div className="text-neutral-600 flex items-center">
                     <img src="/assets/images/money.svg" className="w-4 h-4" />{" "}

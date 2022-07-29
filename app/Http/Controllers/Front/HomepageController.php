@@ -9,6 +9,6 @@ class HomepageController extends Controller
 {
     public function __invoke()
     {
-        return Inertia::render('Welcome');
+        return Inertia::render('Homepage');
     }
 }
