@@ -7,6 +7,10 @@ Created for companies to have their own place for the HR department to advertise
 -   ReactJS Frontend via InertiaJS Laravel
 -   The industry standard database - MySQL
 
+## Preview
+
+![laraboard preview](https://raw.githubusercontent.com/crivion/laraboard-careers/master/public/assets/images/laraboard-preview.png)
+
 ## WORK IS IN PROGRESS
 
 Current status: BUILDING A BASIC LAYOUT
