@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Front\HomepageController;
+use App\Http\Controllers\JobDetailsController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -16,6 +17,7 @@ use Inertia\Inertia;
 */
 
 Route::get('/', HomepageController::class)->name('homepage');
+Route::get('position/{slug}', JobDetailsController::class)->name('job-details');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

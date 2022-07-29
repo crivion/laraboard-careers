@@ -1,12 +1,16 @@
+import { Link } from "@inertiajs/inertia-react";
+
 export default function JobCard() {
     return (
         <div className="rounded-lg p-5 border border-gray-100 shadow-sm mb-4">
-            <a
-                href=""
+            <Link
+                href={route("job-details", {
+                    slug: "junior-graphic-designer-web",
+                })}
                 className="text-lg hover:text-neutral-800 text-blue-800 font-bold block"
             >
                 Junior Graphic Designer (Web)
-            </a>
+            </Link>
 
             <div className="mt-3 flex items-center space-x-5">
                 <div className="text-neutral-600 flex items-center">

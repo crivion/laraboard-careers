@@ -1,6 +1,6 @@
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import NavLink from "@/Components/NavLink";
-import Dropdown from "@/Components/Dropdown";
+import { Link } from "@inertiajs/inertia-react";
 import MobileNavbar from "@/Components/MobileNavbar";
 
 export default function Navbar() {
@@ -10,18 +10,18 @@ export default function Navbar() {
                 <div className="max-w-screen-xl mx-auto px-3">
                     <div className="flex justify-between items-center">
                         <div className="flex items-center py-1">
-                            <a href="/">
+                            <Link href={route("homepage")}>
                                 <ApplicationLogo />
-                            </a>
-                            <a href="/">
+                            </Link>
+                            <Link href={route("homepage")}>
                                 <span className="uppercase font-semibold hover:text-blue-800 text-2xl  text-neutral-800">
                                     LaraBoard
                                 </span>
-                            </a>
+                            </Link>
                         </div>
                         <div className="items-center hidden md:flex">
-                            <NavLink href="/dashboard">Home</NavLink>
-                            <NavLink href="/dashboard">Team</NavLink>
+                            <NavLink href={route("homepage")}>Home</NavLink>
+                            <NavLink href="/team">Team</NavLink>
                             <NavLink href="/dashboard">Blog</NavLink>
                             <NavLink href="/dashboard">Contact</NavLink>
                         </div>
