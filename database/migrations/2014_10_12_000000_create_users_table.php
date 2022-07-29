@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('contact_phone')->nullable();
+            $table->enum('user_type', ['admin', 'hr-representative'])->default('hr-representative');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
