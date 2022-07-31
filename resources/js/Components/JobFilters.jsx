@@ -1,23 +1,40 @@
 import t from "@/Hooks/useTranslate";
-import { useForm } from "@inertiajs/inertia-react";
+import { useState } from "react";
+import { Inertia } from "@inertiajs/inertia";
 
 export default function JobFilters({
     lang,
     departments,
     contractTypes,
     locations,
+    queryFilters,
 }) {
-    const { data, setData, post, processing, errors } = useForm({
-        keyword: "",
-        department: "",
-        contractType: "",
-        location: "",
-    });
+    const [keyword, setKeyword] = useState(queryFilters.keyword || "");
+    const [department, setDepartment] = useState(queryFilters.department || "");
+    const [contractType, setContractType] = useState(
+        queryFilters.contractType || ""
+    );
+    const [location, setLocation] = useState(queryFilters.location || "");
+    const [processing, setProcessing] = useState(false);
 
-    function submit(e) {
+    const submit = async (e) => {
         e.preventDefault();
-        post(route("homepage"));
-    }
+
+        Inertia.get(
+            route("homepage"),
+            { keyword, department, contractType, location },
+            {
+                preserveState: true,
+                replace: true,
+                onBefore: () => {
+                    setProcessing(true);
+                },
+                onFinish: () => {
+                    setProcessing(false);
+                },
+            }
+        );
+    };
 
     return (
         <div className="rounded-lg bg-light-blue px-5 py-3 ml-5">
@@ -40,10 +57,8 @@ export default function JobFilters({
                             id="keyword"
                             placeholder={t("Job title, keywords, etc.", lang)}
                             className="w-full border-0 outline-0 focus:ring-0"
-                            value={data.keyword}
-                            onChange={(e) =>
-                                setData({ keyword: e.target.value })
-                            }
+                            value={keyword}
+                            onChange={(e) => setKeyword(e.target.value)}
                         />
                     </div>
                 </div>
@@ -64,10 +79,8 @@ export default function JobFilters({
                             name="department"
                             id="department"
                             className="w-full border-0 outline-0 focus:ring-0"
-                            defaultValue={data.department}
-                            onChange={(e) =>
-                                setData({ department: e.target.value })
-                            }
+                            defaultValue={department}
+                            onChange={(e) => setDepartment(e.target.value)}
                         >
                             <option value="">
                                 {t("All Departments", lang)}
@@ -99,10 +112,8 @@ export default function JobFilters({
                             name="contractType"
                             id="contractType"
                             className="w-full border-0 outline-0 focus:ring-0"
-                            defaultValue={data.contractType}
-                            onChange={(e) =>
-                                setData({ contractType: e.target.value })
-                            }
+                            defaultValue={contractType}
+                            onChange={(e) => setContractType(e.target.value)}
                         >
                             <option value="">{t("All Contracts", lang)}</option>
                             {contractTypes.map((ct) => (
@@ -129,10 +140,8 @@ export default function JobFilters({
                             name="location"
                             id="location"
                             className="w-full border-0 outline-0 focus:ring-0"
-                            defaultValue={data.location}
-                            onChange={(e) =>
-                                setData({ location: e.target.value })
-                            }
+                            defaultValue={location}
+                            onChange={(e) => setLocation(e.target.value)}
                         >
                             <option value="">{t("All Locations", lang)}</option>
                             {locations.map((loc) => (

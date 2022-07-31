@@ -12,6 +12,7 @@ export default function Homepage({
     contractTypes,
     locations,
     lang,
+    queryFilters,
 }) {
     const { images } = usePage().props;
 
@@ -73,6 +74,7 @@ export default function Homepage({
                         departments={departments}
                         contractTypes={contractTypes}
                         locations={locations}
+                        queryFilters={queryFilters}
                     />
                 </div>
             </div>

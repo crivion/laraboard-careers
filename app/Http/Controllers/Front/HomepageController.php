@@ -20,13 +20,17 @@ class HomepageController extends Controller
                     ->with('user', 'department', 'location', 'contractType')
                     ->orderByDesc('id')
                     ->applyFilters($request)
-                    ->simplePaginate(10);
+                    ->simplePaginate(10)
+                    ->withQueryString();
 
         // all departments, locations, contract types
         $departments = Department::all();
         $locations = Location::all();
         $contractTypes = ContractType::all();
 
-        return Inertia::render('Homepage', compact('jobs', 'contractTypes', 'locations', 'departments'));
+        // pass query string to Inertia
+        $queryFilters = $request->only(['keyword', 'department', 'location', 'contractType']);
+
+        return Inertia::render('Homepage', compact('jobs', 'contractTypes', 'locations', 'departments', 'queryFilters'));
     }
 }
