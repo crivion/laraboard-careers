@@ -28,9 +28,10 @@ class HomepageController extends Controller
         $locations = Location::all();
         $contractTypes = ContractType::all();
 
-        // pass query string to Inertia
+        // pass query string to Inertia to set filtering form state
         $queryFilters = $request->only(['keyword', 'department', 'location', 'contractType']);
 
+        // finally, return the inertia view
         return Inertia::render('Homepage', compact('jobs', 'contractTypes', 'locations', 'departments', 'queryFilters'));
 
     }
