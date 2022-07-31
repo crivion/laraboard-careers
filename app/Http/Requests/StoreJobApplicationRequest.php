@@ -28,7 +28,7 @@ class StoreJobApplicationRequest extends FormRequest
             'email' => 'required|email',
             'phone' => 'required',
             'resume' => 'required|mimes:pdf',
-            'terms' => 'accepted'
+            'terms' => 'accepted',
         ];
     }
 }

@@ -3,11 +3,11 @@
 namespace App\Providers;
 
 use App\Models\Job;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Cache\RateLimiting\Limit;
-use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -41,7 +41,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::bind('job', function ($value) {
             $job = Job::where('slug', $value);
 
-            if(!auth()->check()) {
+            if (! auth()->check()) {
                 $job->notExpired();
             }
 

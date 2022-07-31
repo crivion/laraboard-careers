@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\Events\JobApplicationReceivedEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreJobApplicationRequest;
 use App\Models\Job;
@@ -21,7 +22,10 @@ class StoreJobApplicationController extends Controller
         $validated['cover_letter'] = request('coverLetter');
 
         // create job application
-        $job->applications()->create($validated);
+        $application = $job->applications()->create($validated);
+
+        // fire events
+        event(new JobApplicationReceivedEvent($application));
 
         // redirect with success message
         return redirect()->route('jobApplicationReceived', ['job' => $job]);
@@ -31,6 +35,4 @@ class StoreJobApplicationController extends Controller
     {
         return Inertia::render('JobApplicationReceived', compact('job'));
     }
-   
-    
 }

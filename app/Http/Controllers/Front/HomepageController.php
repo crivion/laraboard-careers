@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Models\Job;
-use Inertia\Inertia;
-use App\Models\Location;
-use App\Models\Department;
-use App\Models\ContractType;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\ContractType;
+use App\Models\Department;
+use App\Models\Job;
+use App\Models\Location;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class HomepageController extends Controller
 {
@@ -33,6 +33,5 @@ class HomepageController extends Controller
 
         // finally, return the inertia view
         return Inertia::render('Homepage', compact('jobs', 'contractTypes', 'locations', 'departments', 'queryFilters'));
-
     }
 }

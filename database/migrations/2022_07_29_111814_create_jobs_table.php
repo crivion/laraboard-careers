@@ -36,7 +36,6 @@ return new class extends Migration
             $table->fullText('job_description');
             $table->fullText('key_responsibilities');
             $table->fullText('skills_and_experience');
-
         });
     }
 

@@ -25,14 +25,14 @@ class Job extends Model
         'created_at',
         'expires_at',
         'updated_at',
-        'deleted_at'
+        'deleted_at',
     ];
 
     protected $appends = [
-        'isExpired'
+        'isExpired',
     ];
 
-    public function getSlugOptions() : SlugOptions
+    public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
             ->generateSlugsFrom('job_title')
@@ -44,18 +44,20 @@ class Job extends Model
         return 'slug';
     }
 
-    public function scopeNotExpired($query) {
+    public function scopeNotExpired($query)
+    {
         return $query->where('expires_at', '>', now());
     }
 
-    public function getIsExpiredAttribute() {
+    public function getIsExpiredAttribute()
+    {
         return $this->expires_at < now();
     }
 
-    public function scopeApplyFilters($query, Request $request) {
-
-        if($request->filled('keyword')) {
-            $query->where(function($query) use($request) {
+    public function scopeApplyFilters($query, Request $request)
+    {
+        if ($request->filled('keyword')) {
+            $query->where(function ($query) use ($request) {
                 $query->where('job_title', 'like', '%'.$request->keyword.'%')
                     ->orWhere('job_description', 'like', '%'.$request->keyword.'%')
                     ->orWhere('key_responsibilities', 'like', '%'.$request->keyword.'%')
@@ -63,19 +65,17 @@ class Job extends Model
             });
         }
 
-        if($request->filled('department')) {
+        if ($request->filled('department')) {
             $query->where('department_id', $request->department);
         }
 
-        if($request->filled('contractType')) {
+        if ($request->filled('contractType')) {
             $query->where('contract_type_id', $request->contractType);
         }
 
-        if($request->filled('location')) {
+        if ($request->filled('location')) {
             $query->where('location_id', $request->location);
         }
-
-        
     }
 
     public function user()
@@ -83,19 +83,23 @@ class Job extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function department() {
+    public function department()
+    {
         return $this->belongsTo(Department::class);
     }
 
-    public function location() {
+    public function location()
+    {
         return $this->belongsTo(Location::class);
     }
 
-    public function contractType() {
+    public function contractType()
+    {
         return $this->belongsTo(ContractType::class);
     }
 
-    public function applications() {
+    public function applications()
+    {
         return $this->hasMany(Application::class);
     }
 }

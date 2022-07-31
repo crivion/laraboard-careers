@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Platform Admin',
             'email' => 'test@example.com',
-            'user_type' => 'admin'
+            'user_type' => 'admin',
         ]);
 
         // create hr-representatives
@@ -36,6 +36,5 @@ class DatabaseSeeder extends Seeder
 
         // seed jobs
         Job::factory(20)->create();
-        
     }
 }

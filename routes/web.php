@@ -2,8 +2,8 @@
 
 use App\Http\Controllers\Front\HomepageController;
 use App\Http\Controllers\Front\JobDetailsController;
-use App\Http\Controllers\Front\TeamController;
 use App\Http\Controllers\Front\StoreJobApplicationController;
+use App\Http\Controllers\Front\TeamController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 

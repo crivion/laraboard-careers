@@ -2,10 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 use App\Models\Department;
+use Illuminate\Database\Seeder;
 
 class DepartmentSeeder extends Seeder
 {
@@ -19,18 +17,18 @@ class DepartmentSeeder extends Seeder
         Department::truncate();
 
         Department::insert([
-        [
-            'department_name' => 'Software Engineering',
-        ],
-        [
-            'department_name' => 'Marketing',
-        ],
-        [
-            'department_name' => 'Accounting',
-        ],
-        [
-            'department_name' => 'Sales',
-        ]
-    ]);
+            [
+                'department_name' => 'Software Engineering',
+            ],
+            [
+                'department_name' => 'Marketing',
+            ],
+            [
+                'department_name' => 'Accounting',
+            ],
+            [
+                'department_name' => 'Sales',
+            ],
+        ]);
     }
 }

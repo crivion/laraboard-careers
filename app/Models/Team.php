@@ -17,6 +17,4 @@ class Team extends Model
 
     // no timestamps
     public $timestamps = false;
-
-    
 }

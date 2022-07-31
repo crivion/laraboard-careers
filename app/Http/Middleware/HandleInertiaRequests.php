@@ -47,10 +47,10 @@ class HandleInertiaRequests extends Middleware
                     'location' => $request->url(),
                 ]);
             },
-            'lang' => function() {
-                return json_decode(file_get_contents(base_path('lang/' . app()->getLocale().'/strings.json')), true);
+            'lang' => function () {
+                return json_decode(file_get_contents(base_path('lang/'.app()->getLocale().'/strings.json')), true);
             },
-            'csrfToken' => csrf_token()
+            'csrfToken' => csrf_token(),
         ]);
     }
 }

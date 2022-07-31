@@ -22,7 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'contact_phone',
-        'user_type'
+        'user_type',
     ];
 
     /**
@@ -47,14 +47,16 @@ class User extends Authenticatable
     /**
      * Checks if user is admin
      */
-    public function isAdmin() {
+    public function isAdmin()
+    {
         return $this->user_type === 'admin';
     }
 
     /**
      * Checks if user is hr-representative
      */
-    public function isHrRepresentative() {
+    public function isHrRepresentative()
+    {
         return $this->user_type === 'hr-representative';
     }
 }
