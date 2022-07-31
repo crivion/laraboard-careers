@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Button from "@/Components/Button";
-import Guest from "@/Layouts/Front";
+import Auth from "@/Layouts/Auth";
 import Input from "@/Components/Input";
 import Label from "@/Components/Label";
 import ValidationErrors from "@/Components/ValidationErrors";
@@ -31,7 +31,7 @@ export default function ResetPassword({ token, email }) {
     };
 
     return (
-        <Guest>
+        <Auth>
             <Head title="Reset Password" />
 
             <ValidationErrors errors={errors} />
@@ -86,6 +86,6 @@ export default function ResetPassword({ token, email }) {
                     </Button>
                 </div>
             </form>
-        </Guest>
+        </Auth>
     );
 }

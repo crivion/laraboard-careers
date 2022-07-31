@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "@/Components/Button";
-import Guest from "@/Layouts/Front";
+import Auth from "@/Layouts/Auth";
 import Input from "@/Components/Input";
 import ValidationErrors from "@/Components/ValidationErrors";
 import { Head, useForm } from "@inertiajs/inertia-react";
@@ -21,7 +21,7 @@ export default function ForgotPassword({ status }) {
     };
 
     return (
-        <Guest>
+        <Auth>
             <Head title="Forgot Password" />
 
             <div className="mb-4 text-sm text-gray-500 leading-normal">
@@ -54,6 +54,6 @@ export default function ForgotPassword({ status }) {
                     </Button>
                 </div>
             </form>
-        </Guest>
+        </Auth>
     );
 }

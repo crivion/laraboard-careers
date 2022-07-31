@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Button from "@/Components/Button";
-import Guest from "@/Layouts/Front";
+import Auth from "@/Layouts/Auth";
 import Input from "@/Components/Input";
 import Label from "@/Components/Label";
 import ValidationErrors from "@/Components/ValidationErrors";
@@ -28,7 +28,7 @@ export default function ConfirmPassword() {
     };
 
     return (
-        <Guest>
+        <Auth>
             <Head title="Confirm Password" />
 
             <div className="mb-4 text-sm text-gray-600">
@@ -58,6 +58,6 @@ export default function ConfirmPassword() {
                     </Button>
                 </div>
             </form>
-        </Guest>
+        </Auth>
     );
 }
