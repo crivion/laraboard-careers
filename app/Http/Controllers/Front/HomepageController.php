@@ -7,9 +7,8 @@ use Inertia\Inertia;
 use App\Models\Location;
 use App\Models\Department;
 use App\Models\ContractType;
-use App\Http\Controllers\Controller;
-use Error;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class HomepageController extends Controller
 {
@@ -33,5 +32,6 @@ class HomepageController extends Controller
         $queryFilters = $request->only(['keyword', 'department', 'location', 'contractType']);
 
         return Inertia::render('Homepage', compact('jobs', 'contractTypes', 'locations', 'departments', 'queryFilters'));
+
     }
 }

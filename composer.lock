@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a153d77acae8f7e3d6741d254733c78a",
+    "content-hash": "806f862cc0e47e10f1ffc72e8f4b7f37",
     "packages": [
         {
             "name": "brick/math",
@@ -65,6 +65,54 @@
                 }
             ],
             "time": "2021-08-15T20:50:18+00:00"
+        },
+        {
+            "name": "crivion/options",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/crivion/options.git",
+                "reference": "448f71d75c48060be950b8f8221e537c81f0f1db"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/crivion/options/zipball/448f71d75c48060be950b8f8221e537c81f0f1db",
+                "reference": "448f71d75c48060be950b8f8221e537c81f0f1db",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Crivion\\Options\\OptionsServiceProvider"
+                    ],
+                    "aliases": {
+                        "Options": "Crivion\\Options\\Facade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Crivion\\Options\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alex Crivion",
+                    "email": "crivion@gmail.com"
+                }
+            ],
+            "description": "A way to get_option($option_name, $default = null) and set_option($option_name, $option_value) similar to wordpress for Laravel.",
+            "support": {
+                "issues": "https://github.com/crivion/options/issues",
+                "source": "https://github.com/crivion/options/tree/master"
+            },
+            "time": "2020-01-06T16:27:00+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -8161,7 +8209,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "crivion/options": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
