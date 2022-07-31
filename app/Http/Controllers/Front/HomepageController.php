@@ -8,6 +8,7 @@ use App\Models\Location;
 use App\Models\Department;
 use App\Models\ContractType;
 use App\Http\Controllers\Controller;
+use Error;
 use Illuminate\Http\Request;
 
 class HomepageController extends Controller
