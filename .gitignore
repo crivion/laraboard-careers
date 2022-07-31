@@ -3,6 +3,7 @@
 /public/hot
 /public/storage
 /storage/*.key
+/storage/app/resumes
 /vendor
 .env
 .env.backup

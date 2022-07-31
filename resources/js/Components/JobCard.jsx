@@ -4,7 +4,7 @@ export default function JobCard({ job }) {
     return (
         <div className="rounded-lg p-5 border border-gray-100 shadow-sm mb-4 bg-white">
             <Link
-                href={route("job-details", {
+                href={route("jobDetails", {
                     slug: job.slug,
                 })}
                 className="text-lg hover:text-neutral-800 text-blue-800 font-bold block"

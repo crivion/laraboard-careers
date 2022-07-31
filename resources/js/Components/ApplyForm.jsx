@@ -19,6 +19,7 @@ export default function ApplyForm({ job, lang }) {
 
         post(route("storeJobApplication", { job: job.slug }), {
             preserveScroll: true,
+            resetOnSuccess: false,
         });
     };
 

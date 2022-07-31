@@ -94,4 +94,8 @@ class Job extends Model
     public function contractType() {
         return $this->belongsTo(ContractType::class);
     }
+
+    public function applications() {
+        return $this->hasMany(Application::class);
+    }
 }
