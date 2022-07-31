@@ -1,11 +1,11 @@
 import React from "react";
-import { Link, Head } from "@inertiajs/inertia-react";
+import { Head } from "@inertiajs/inertia-react";
 import Front from "@/Layouts/Front";
-import JobCard from "@/Components/JobCard";
-import { usePage } from "@inertiajs/inertia-react";
-import JobFilters from "@/Components/JobFilters";
+import t from "@/Hooks/useTranslate";
+import ApplyForm from "@/Components/ApplyForm";
+import HRRepresentative from "@/Components/HRRepresentative";
 
-export default function JobDetails({ job }) {
+export default function JobDetails({ job, lang }) {
     return (
         <Front>
             <Head title={job.job_title} />
@@ -62,7 +62,7 @@ export default function JobDetails({ job }) {
                 <div className="lg:w-2/3">
                     <div className="job-detail-description text-neutral-800">
                         <h3 className="title text-xl font-semibold mb-3">
-                            Job Description
+                            {t("Job Description", lang)}
                         </h3>
                         <div className="leading-relaxed">
                             {job.job_description}
@@ -71,7 +71,7 @@ export default function JobDetails({ job }) {
                         {job.key_responsibilities && (
                             <>
                                 <h3 className="title text-xl font-semibold mt-8 mb-3">
-                                    Key Responsibilities
+                                    {t("Key Responsibilities", lang)}
                                 </h3>
                                 <div className="leading-relaxed">
                                     {job.key_responsibilities}
@@ -82,7 +82,7 @@ export default function JobDetails({ job }) {
                         {job.skills_and_experience && (
                             <>
                                 <h3 className="title text-xl font-semibold mt-8 mb-3">
-                                    Skill &amp; Experience
+                                    {t("Skills & Experience", lang)}
                                 </h3>
                                 <div className="leading-relaxed">
                                     {job.skills_and_experience}
@@ -93,76 +93,8 @@ export default function JobDetails({ job }) {
                 </div>
 
                 <div className="lg:w-1/3 pt-10 md:pt-0">
-                    <div className="rounded-lg bg-light-blue p-5 lg:ml-5 mt-5 lg:mt-0 mb-6">
-                        <h3 className="title text-xl font-semibold mb-3">
-                            HR Representative
-                        </h3>
-                        <h4 className="text-lg text-neutral-800">
-                            {job.user.name}
-                        </h4>
-                        {job.user.contact_phone && (
-                            <div className="text-neutral-800 flex flex-wrap items-center">
-                                <img
-                                    src="/assets/images/phone.svg"
-                                    className="w-4 mr-1"
-                                />{" "}
-                                {job.user.contact_phone}
-                            </div>
-                        )}
-                        {job.user.email && (
-                            <div className="text-neutral-800 flex flex-wrap items-center">
-                                <img
-                                    src="/assets/images/email.svg"
-                                    className="w-4 mr-1"
-                                />
-                                {job.user.email}
-                            </div>
-                        )}
-                    </div>
-
-                    <div className="rounded-lg bg-light-blue p-5 lg:ml-5">
-                        <h3 className="title text-xl font-semibold mb-5">
-                            Apply to this position
-                        </h3>
-                        <form name="applyForm" id="applyForm">
-                            <input
-                                type="text"
-                                name="fullName"
-                                id="fullName"
-                                placeholder="Full Name"
-                                className="w-full border-0 outline-0 focus:ring-0 rounded-lg p-3"
-                            />
-                            <input
-                                type="text"
-                                name="contactEmail"
-                                id="contactEmail"
-                                placeholder="Contact Email"
-                                className="w-full border-0 outline-0 focus:ring-0 rounded-lg p-3 mt-3"
-                            />
-                            <input
-                                type="text"
-                                name="contactPhone"
-                                id="contactPhone"
-                                placeholder="Contact Phone"
-                                className="w-full border-0 outline-0 focus:ring-0 rounded-lg p-3 mt-3"
-                            />
-                            <textarea
-                                name="message"
-                                id="message"
-                                placeholder="Your letter of intent"
-                                rows="5"
-                                className="w-full border-0 outline-0 focus:ring-0 rounded-lg p-3 mt-3"
-                            />
-                            Attach Resume (PDF/DOC/DOCX):
-                            <p>
-                                <input type="checkbox" name="terms" /> I accept
-                                the terms and conditions &amp; privacy policy
-                            </p>
-                            <button className="bg-blue-800 text-white font-semibold py-2.5 px-8 rounded mt-5">
-                                Send Application
-                            </button>
-                        </form>
-                    </div>
+                    <HRRepresentative job={job} lang={lang} />
+                    <ApplyForm job={job} lang={lang} />
                 </div>
             </div>
         </Front>

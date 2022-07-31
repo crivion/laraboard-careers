@@ -3,6 +3,7 @@
 use App\Http\Controllers\Front\HomepageController;
 use App\Http\Controllers\Front\JobDetailsController;
 use App\Http\Controllers\Front\TeamController;
+use App\Http\Controllers\Front\StoreJobApplicationController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -19,6 +20,7 @@ use Inertia\Inertia;
 
 Route::any('/', HomepageController::class)->name('homepage');
 Route::get('position/{job}', JobDetailsController::class)->name('job-details');
+Route::post('position/{job}/store-application', StoreJobApplicationController::class)->name('storeJobApplication');
 Route::get('team', TeamController::class)->name('team');
 
 Route::get('/dashboard', function () {
