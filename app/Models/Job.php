@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
@@ -49,6 +50,32 @@ class Job extends Model
 
     public function getIsExpiredAttribute() {
         return $this->expires_at < now();
+    }
+
+    public function scopeApplyFilters($query, Request $request) {
+
+        if($request->filled('keyword')) {
+            $query->where(function($query) use($request) {
+                $query->where('job_title', 'like', '%'.$request->keyword.'%')
+                    ->orWhere('job_description', 'like', '%'.$request->keyword.'%')
+                    ->orWhere('key_responsibilities', 'like', '%'.$request->keyword.'%')
+                    ->orWhere('skills_and_experience', 'like', '%'.$request->keyword.'%');
+            });
+        }
+
+        if($request->filled('department')) {
+            $query->where('department_id', $request->department);
+        }
+
+        if($request->filled('contractType')) {
+            $query->where('contract_type_id', $request->contractType);
+        }
+
+        if($request->filled('location')) {
+            $query->where('location_id', $request->location);
+        }
+
+        
     }
 
     public function user()

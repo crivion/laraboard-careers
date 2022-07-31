@@ -17,7 +17,7 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', HomepageController::class)->name('homepage');
+Route::any('/', HomepageController::class)->name('homepage');
 Route::get('position/{job}', JobDetailsController::class)->name('job-details');
 Route::get('team', TeamController::class)->name('team');
 

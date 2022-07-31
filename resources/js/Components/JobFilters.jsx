@@ -1,4 +1,5 @@
 import t from "@/Hooks/useTranslate";
+import { useForm } from "@inertiajs/inertia-react";
 
 export default function JobFilters({
     lang,
@@ -6,9 +7,21 @@ export default function JobFilters({
     contractTypes,
     locations,
 }) {
+    const { data, setData, post, processing, errors } = useForm({
+        keyword: "",
+        department: "",
+        contractType: "",
+        location: "",
+    });
+
+    function submit(e) {
+        e.preventDefault();
+        post(route("homepage"));
+    }
+
     return (
         <div className="rounded-lg bg-light-blue px-5 py-3 ml-5">
-            <form name="jobFilters" id="jobFilters">
+            <form name="jobFilters" id="jobFilters" onSubmit={submit}>
                 <h3 className="text-lg font-semibold text-neutral-800 mt-5 mb-2">
                     {t("Search By Keyword", lang)}
                 </h3>
@@ -27,6 +40,10 @@ export default function JobFilters({
                             id="keyword"
                             placeholder={t("Job title, keywords, etc.", lang)}
                             className="w-full border-0 outline-0 focus:ring-0"
+                            value={data.keyword}
+                            onChange={(e) =>
+                                setData({ keyword: e.target.value })
+                            }
                         />
                     </div>
                 </div>
@@ -47,6 +64,10 @@ export default function JobFilters({
                             name="department"
                             id="department"
                             className="w-full border-0 outline-0 focus:ring-0"
+                            defaultValue={data.department}
+                            onChange={(e) =>
+                                setData({ department: e.target.value })
+                            }
                         >
                             <option value="">
                                 {t("All Departments", lang)}
@@ -78,6 +99,10 @@ export default function JobFilters({
                             name="contractType"
                             id="contractType"
                             className="w-full border-0 outline-0 focus:ring-0"
+                            defaultValue={data.contractType}
+                            onChange={(e) =>
+                                setData({ contractType: e.target.value })
+                            }
                         >
                             <option value="">{t("All Contracts", lang)}</option>
                             {contractTypes.map((ct) => (
@@ -104,6 +129,10 @@ export default function JobFilters({
                             name="location"
                             id="location"
                             className="w-full border-0 outline-0 focus:ring-0"
+                            defaultValue={data.location}
+                            onChange={(e) =>
+                                setData({ location: e.target.value })
+                            }
                         >
                             <option value="">{t("All Locations", lang)}</option>
                             {locations.map((loc) => (
@@ -116,10 +145,20 @@ export default function JobFilters({
                 </div>
 
                 <div className="flex justify-center mt-8 mb-3">
-                    <button className="bg-blue-800 text-white font-semibold py-2.5 px-8 rounded">
+                    <button
+                        type="submit"
+                        className="bg-blue-800 text-white font-semibold py-2.5 px-8 rounded"
+                        disabled={processing}
+                    >
                         {t("Apply Filters", lang)}
                     </button>
                 </div>
+
+                {processing && (
+                    <div className="flex justify-center mt-3 mb-3">
+                        {t("Searching...", lang)}
+                    </div>
+                )}
             </form>
         </div>
     );
