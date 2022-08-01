@@ -37,6 +37,10 @@ class HandleInertiaRequests extends Middleware
         return array_merge(parent::share($request), [
             'auth' => [
                 'user' => $request->user(),
+                'can' => [
+                    'admin' => $request->user() && $request->user()->isAdmin(),
+                    'hr' => $request->user() && $request->user()->isHrRepresentative(),
+                ],
             ],
             'images' => [
                 'logo' => asset('assets/images/laraboard-logo.png'),

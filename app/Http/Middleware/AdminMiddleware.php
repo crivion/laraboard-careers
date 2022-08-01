@@ -16,7 +16,7 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->user() && $request->user()->isAdmin()) {
+        if ($request->user() && ( $request->user()->isAdmin() || $request->user()->isHrRepresentative() )) {
             return $next($request);
         } else {
             abort(403);

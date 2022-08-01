@@ -24,9 +24,5 @@ Route::post('position/{job}/store-application', [StoreJobApplicationController::
 Route::get('application/{job}', [StoreJobApplicationController::class, 'applicationReceived'])->name('jobApplicationReceived');
 Route::get('team', TeamController::class)->name('team');
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';

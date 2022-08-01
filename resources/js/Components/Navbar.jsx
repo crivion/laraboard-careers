@@ -27,7 +27,7 @@ export default function Navbar({ scroll }) {
                         </div>
                         <div className="items-center hidden md:flex">
                             <NavLink href={route("homepage")}>Home</NavLink>
-                            <NavLink href={route("team")}>Team</NavLink>
+                            <NavLink href="/team">Team</NavLink>
                             <NavLink href="/dashboard">Blog</NavLink>
                             <NavLink href="/dashboard">Contact</NavLink>
                         </div>
