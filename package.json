@@ -2,7 +2,8 @@
     "private": true,
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "postinstall": "node ./postinstall.js"
     },
     "devDependencies": {
         "@headlessui/react": "^1.4.2",
@@ -22,6 +23,9 @@
         "vite": "^3.0.0"
     },
     "dependencies": {
-        "react-icons": "^4.4.0"
+        "@tinymce/tinymce-react": "^4.1.0",
+        "fs-extra": "^10.1.0",
+        "react-icons": "^4.4.0",
+        "tinymce": "^6.1.2"
     }
 }

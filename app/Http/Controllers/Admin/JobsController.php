@@ -31,6 +31,8 @@ class JobsController extends Controller
     public function create()
     {
         $this->authorize('create', Job::class);
+
+        return Inertia::render('Dashboard/CreateJob');
     }
 
     /**
@@ -42,6 +44,8 @@ class JobsController extends Controller
     public function store(Request $request)
     {
         $this->authorize('create', Job::class);
+
+        dd($request->all());
     }
 
     /**

@@ -58,7 +58,7 @@ export default function Dashboard(props) {
                                         </TableTd>
                                         <TableTd field="View">
                                             <Link
-                                                className=" bg-blue-400 hover:bg-blue-500 px-3 rounded py-1.5 text-white"
+                                                className=" px-3 rounded py-1.5 text-gray-900 hover:underline font-semibold"
                                                 href={`/job-application/${a.id}`}
                                             >
                                                 Manage

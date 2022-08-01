@@ -17,3 +17,5 @@ yarn-error.log
 /.vscode
 .DS_Store
 *.DS_Store*
+/public/tinymce/
+

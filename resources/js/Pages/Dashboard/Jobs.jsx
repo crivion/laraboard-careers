@@ -20,7 +20,7 @@ export default function Jobs(props) {
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <LinkButton className="mb-5" href="/">
+                    <LinkButton className="mb-5" href={route("jobs.create")}>
                         Create Job Listing
                     </LinkButton>
 

@@ -6,7 +6,7 @@ export default function TableHead({ headings }) {
                     <th
                         className={`${index == 0 ? "rounded-tl" : ""} ${
                             headings.length - 1 === index ? "rounded-tr" : ""
-                        } p-3 font-semibold uppercase bg-gradient-to-b from-slate-600 to-slate-700 text-white hidden lg:table-cell`}
+                        } p-3 font-semibold uppercase bg-gray-900 text-white text-sm hidden lg:table-cell`}
                         key={`th${index}`}
                     >
                         {heading}
