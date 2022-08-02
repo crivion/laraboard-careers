@@ -77,7 +77,10 @@ export default function Dashboard(props) {
                                         <TableTd field="View">
                                             <Link
                                                 className=" px-3 rounded py-1.5 text-gray-900 hover:underline font-semibold"
-                                                href={`/job-application/${a.id}`}
+                                                href={route(
+                                                    "job-application.view",
+                                                    { jobApplication: a }
+                                                )}
                                             >
                                                 Manage
                                             </Link>

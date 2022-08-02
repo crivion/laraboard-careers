@@ -13,7 +13,9 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        // 'App\Models\Job' => 'App\Policies\JobsPolicy'
+        // using auto-discovery, but for fellow devs here's what laravel automaps
+        // 'App\Models\Job' => 'App\Policies\JobPolicy'
+        
     ];
 
     /**

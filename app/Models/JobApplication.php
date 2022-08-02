@@ -19,6 +19,7 @@ class JobApplication extends Model
         'phone',
         'cover_letter',
         'resume',
+        'status',
     ];
 
     public function job()
