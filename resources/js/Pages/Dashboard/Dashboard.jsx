@@ -3,6 +3,7 @@ import Authenticated from "@/Layouts/Authenticated";
 import { Link, Head } from "@inertiajs/inertia-react";
 import TableHead from "@/Components/TableHead";
 import TableTd from "@/Components/TableTd";
+import StatusSpan from "@/Components/StatusSpan";
 
 export default function Dashboard(props) {
     const applications = props.applications;
@@ -34,6 +35,7 @@ export default function Dashboard(props) {
                                     "ID",
                                     "Applicant",
                                     "Job",
+                                    "Status",
                                     "Date",
                                     "View",
                                 ]}
@@ -43,7 +45,9 @@ export default function Dashboard(props) {
                                     <tr key={a.id}>
                                         <TableTd field="ID">{a.id}</TableTd>
                                         <TableTd field="Applicant">
-                                            {a.name}
+                                            <span class="font-medium">
+                                                {a.name}
+                                            </span>
                                         </TableTd>
                                         <TableTd field="Job">
                                             <a
@@ -55,6 +59,9 @@ export default function Dashboard(props) {
                                             >
                                                 {a.job.job_title}
                                             </a>
+                                        </TableTd>
+                                        <TableTd field="Status">
+                                            <StatusSpan status={a.status} />
                                         </TableTd>
                                         <TableTd field="Date">
                                             {a.humanCreatedAt}

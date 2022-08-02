@@ -2,7 +2,7 @@
 
 namespace App\Events;
 
-use App\Models\Application;
+use App\Models\JobApplication;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
@@ -19,7 +19,7 @@ class JobApplicationReceivedEvent
      */
     public $application;
 
-    public function __construct(Application $application)
+    public function __construct(JobApplication $application)
     {
         $this->application = $application;
     }
