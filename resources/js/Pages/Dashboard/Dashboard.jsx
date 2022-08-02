@@ -22,8 +22,11 @@ export default function Dashboard(props) {
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        {!applications.data.length &&
-                            "No applications on any of your posted jobs."}
+                        {!applications.data.length && (
+                            <div class="p-6 font-semibold text-lg">
+                                No applicants applied on any of your posted jobs
+                            </div>
+                        )}
 
                         <table className="w-full table-auto">
                             <TableHead

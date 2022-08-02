@@ -1,26 +1,62 @@
-import { useRef } from "react";
 import Authenticated from "@/Layouts/Authenticated";
 import { Link, Head, useForm } from "@inertiajs/inertia-react";
 import Input from "@/Components/Input";
 import Label from "@/Components/Label";
 import { Editor } from "@tinymce/tinymce-react";
 import Button from "@/Components/Button";
+import { toast } from "react-toastify";
+import Select from "react-select";
+import { Inertia } from "@inertiajs/inertia";
 
 export default function CreateJob(props) {
-    const { data, setData, post, processing, errors } = useForm({
-        job_title: "",
-        job_description: "",
-        skills_and_experience: "",
-        salary: "",
-        department_id: "",
-        location_id: "",
-        contract_type_id: "",
-        expires_at: "",
+    const job = props.job;
+
+    const { data, setData, processing, errors } = useForm({
+        job_id: job?.id || null,
+        job_title: job?.job_title || "",
+        job_description: job?.job_description || "",
+        skills_and_experience: job?.skills_and_experience || "",
+        key_responsibilities: job?.key_responsibilities || "",
+        salary: job?.salary || "",
+        department_id: job?.department_id || "",
+        location_id: job?.location_id || "",
+        contract_type_id: job?.contract_type_id || "",
+        expires_at: job?.expires_at || "",
+        cancelToken: null,
     });
+
+    const departments = props.departments;
+    const locations = props.locations;
+    const contractTypes = props.contractTypes;
 
     const submit = (e) => {
         e.preventDefault();
-        post(route("jobs.store"));
+
+        const postURL = job
+            ? route("jobs.update", { job: job.slug })
+            : route("jobs.store");
+
+        Inertia.visit(postURL, {
+            method: job ? "put" : "post",
+            data: data,
+            onError: (errors) => {
+                // data.cancelToken.cancel();
+                for (const [errorField, errorMessage] of Object.entries(
+                    errors
+                )) {
+                    toast.error(errorMessage);
+                }
+            },
+            onBefore: (visit) => {
+                console.log(visit);
+            },
+            onFinish: (response) => {
+                console.log("FINISHED", response);
+            },
+            onCancelToken: (cancelToken) => setData("cancelToken", cancelToken),
+            preserveScroll: true,
+            preserveState: true,
+        });
     };
 
     return (
@@ -35,11 +71,11 @@ export default function CreateJob(props) {
                     >
                         Jobs
                     </Link>{" "}
-                    &raquo; Create Job Listing
+                    &raquo; {job?.id ? "Update" : "Create"} Job Listing
                 </h2>
             }
         >
-            <Head title="Create Job Listing" />
+            <Head title="Job Listing" />
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -57,6 +93,7 @@ export default function CreateJob(props) {
                                     handleChange={(e) =>
                                         setData(e.target.name, e.target.value)
                                     }
+                                    value={data.job_title}
                                     required
                                 />
                                 <Label
@@ -70,14 +107,121 @@ export default function CreateJob(props) {
                                     handleChange={(e) =>
                                         setData(e.target.name, e.target.value)
                                     }
+                                    value={data.salary}
                                     required
                                 />
+
+                                <div className="md:flex md:items-center">
+                                    <div className="w-full">
+                                        <Label
+                                            forInput="department_id"
+                                            value="Department"
+                                            className="mt-4 text-lg"
+                                        />
+                                        <Select
+                                            className="z-[9999] w-full"
+                                            isClearable={true}
+                                            isSearchable={true}
+                                            onChange={(e) =>
+                                                setData("department_id", e.id)
+                                            }
+                                            getOptionLabel={(dep) =>
+                                                dep.department_name
+                                            }
+                                            getOptionValue={(dep) => dep.id}
+                                            options={departments}
+                                            defaultValue={departments.filter(
+                                                (dep) =>
+                                                    dep.id ===
+                                                    data.department_id
+                                            )}
+                                        />
+                                    </div>
+
+                                    <div className="w-full md:ml-5">
+                                        <Label
+                                            forInput="contract_type_id"
+                                            value="Contract Type"
+                                            className="mt-4 text-lg"
+                                        />
+                                        <Select
+                                            className="z-[9998] w-full"
+                                            isClearable={true}
+                                            isSearchable={true}
+                                            onChange={(e) =>
+                                                setData(
+                                                    "contract_type_id",
+                                                    e.id
+                                                )
+                                            }
+                                            getOptionLabel={(contract) =>
+                                                contract.contract_type_name
+                                            }
+                                            getOptionValue={(contract) =>
+                                                contract.id
+                                            }
+                                            options={contractTypes}
+                                            defaultValue={contractTypes.filter(
+                                                (contract) =>
+                                                    contract.id ===
+                                                    data.contract_type_id
+                                            )}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="md:flex md:items-center">
+                                    <div className="w-full">
+                                        <Label
+                                            forInput="location_id"
+                                            value="Location"
+                                            className="mt-4 text-lg"
+                                        />
+                                        <Select
+                                            className="z-[9990] w-full"
+                                            isClearable={true}
+                                            isSearchable={true}
+                                            onChange={(e) =>
+                                                setData("location_id", e.id)
+                                            }
+                                            getOptionLabel={(loc) =>
+                                                loc.location_name
+                                            }
+                                            getOptionValue={(loc) => loc.id}
+                                            options={locations}
+                                            defaultValue={locations.filter(
+                                                (loc) =>
+                                                    loc.id === data.location_id
+                                            )}
+                                        />
+                                    </div>
+
+                                    <div className="w-full md:ml-5">
+                                        <Label
+                                            forInput="expires_at"
+                                            value="Expires At (Optional)"
+                                            className="mt-4 text-lg"
+                                        />
+                                        <Input
+                                            name="expires_at"
+                                            type="date"
+                                            handleChange={(e) =>
+                                                setData(
+                                                    e.target.name,
+                                                    e.target.value
+                                                )
+                                            }
+                                        />
+                                    </div>
+                                </div>
+
                                 <Label
                                     forInput="job_description"
                                     value="Job Description"
                                     className="mt-4 text-lg"
                                 />
                                 <Editor
+                                    directionality="ltr"
                                     onEditorChange={(content) => {
                                         setData("job_description", content);
                                     }}
@@ -85,7 +229,7 @@ export default function CreateJob(props) {
                                         route("homepage") +
                                         "/tinymce/tinymce.min.js"
                                     }
-                                    initialValue=""
+                                    value={data.job_description}
                                     init={{
                                         height: 500,
                                         menubar: false,
@@ -122,6 +266,7 @@ export default function CreateJob(props) {
                                     className="mt-4 text-lg"
                                 />
                                 <Editor
+                                    directionality="ltr"
                                     tinymceScriptSrc={
                                         route("homepage") +
                                         "/tinymce/tinymce.min.js"
@@ -132,7 +277,7 @@ export default function CreateJob(props) {
                                             content
                                         );
                                     }}
-                                    initialValue=""
+                                    value={data.key_responsibilities}
                                     init={{
                                         height: 200,
                                         menubar: false,
@@ -179,7 +324,7 @@ export default function CreateJob(props) {
                                             content
                                         );
                                     }}
-                                    initialValue=""
+                                    value={data.skills_and_experience}
                                     init={{
                                         height: 200,
                                         menubar: false,

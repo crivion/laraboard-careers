@@ -15,4 +15,6 @@ class Department extends Model
 
     // no timestamps
     public $timestamps = false;
+
+
 }

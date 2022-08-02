@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use App\Traits\HumanDate;
 
 class Job extends Model
 {
-    use HasFactory, HasSlug;
+    use HasFactory, HasSlug, HumanDate;
 
     protected $fillable = [
         'job_title',
@@ -22,6 +23,7 @@ class Job extends Model
         'location_id',
         'user_id',
         'contract_type_id',
+        'department_id',
         'created_at',
         'expires_at',
         'updated_at',
@@ -30,6 +32,7 @@ class Job extends Model
 
     protected $appends = [
         'isExpired',
+        'humanCreatedAt'
     ];
 
     public function getSlugOptions(): SlugOptions
@@ -46,11 +49,18 @@ class Job extends Model
 
     public function scopeNotExpired($query)
     {
-        return $query->where('expires_at', '>', now());
+        return $query->where(function($query) {
+            $query->where('expires_at', '>', now())
+                ->orWhereNull('expires_at');
+        });
     }
 
     public function getIsExpiredAttribute()
     {
+        if(is_null($this->expires_at)) {
+            return false;
+        }
+        
         return $this->expires_at < now();
     }
 
@@ -108,6 +118,6 @@ class Job extends Model
 
     public function applications()
     {
-        return $this->hasMany(Application::class);
+        return $this->hasMany(JobApplication::class);
     }
 }

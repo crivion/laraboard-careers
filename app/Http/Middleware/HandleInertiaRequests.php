@@ -55,6 +55,10 @@ class HandleInertiaRequests extends Middleware
                 return json_decode(file_get_contents(base_path('lang/'.app()->getLocale().'/strings.json')), true);
             },
             'csrfToken' => csrf_token(),
+            'flash' => [
+                'success' => $request->session()->get('success'),
+                'error' => $request->session()->get('error'),
+            ]
         ]);
     }
 }

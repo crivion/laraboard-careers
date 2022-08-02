@@ -5,10 +5,25 @@ namespace App\Policies;
 use App\Models\Job;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Auth\Access\Response as GateResponse;
 
 class JobPolicy
 {
     use HandlesAuthorization;
+
+    /**
+     * Perform pre-authorization checks.
+     *
+     * @param  \App\Models\User  $user
+     * @param  string  $ability
+     * @return void|bool
+     */
+    public function before(User $user)
+    {
+        if ($user->isAdmin()) {
+            return true;
+        }
+    }
 
     /**
      * Determine whether the user can view any models.
@@ -30,7 +45,7 @@ class JobPolicy
      */
     public function view(User $user, Job $job)
     {
-        return $user->user_id === $job->user_id || $user->isAdmin();
+        return $user->id === $job->user_id;
     }
 
     /**
@@ -41,7 +56,7 @@ class JobPolicy
      */
     public function create(User $user)
     {
-        return $user->isHrRepresentative() || $user->isAdmin();
+        return $user->isHrRepresentative();
     }
 
     /**
@@ -53,7 +68,7 @@ class JobPolicy
      */
     public function update(User $user, Job $job)
     {
-        return $user->user_id === $job->user_id || $user->isAdmin();
+        return $user->id === $job->user_id;
     }
 
     /**
@@ -65,7 +80,7 @@ class JobPolicy
      */
     public function delete(User $user, Job $job)
     {
-        return $user->user_id === $job->user_id || $user->isAdmin();
+        return $user->id === $job->user_id;
     }
 
     

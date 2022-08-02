@@ -2,7 +2,7 @@
 
 namespace App\Notifications;
 
-use App\Models\Application;
+use App\Models\JobApplication;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -19,7 +19,7 @@ class JobApplicationReceivedNotification extends Notification implements ShouldQ
      */
     public $application;
 
-    public function __construct(Application $application)
+    public function __construct(JobApplication $application)
     {
         $this->application = $application;
     }

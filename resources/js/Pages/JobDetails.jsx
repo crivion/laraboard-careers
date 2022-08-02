@@ -64,18 +64,24 @@ export default function JobDetails({ job, lang }) {
                         <h3 className="title text-xl font-semibold mb-3">
                             {t("Job Description", lang)}
                         </h3>
-                        <div className="leading-relaxed">
-                            {job.job_description}
-                        </div>
+                        <div
+                            className="leading-relaxed"
+                            dangerouslySetInnerHTML={{
+                                __html: job.job_description,
+                            }}
+                        ></div>
 
                         {job.key_responsibilities && (
                             <>
                                 <h3 className="title text-xl font-semibold mt-8 mb-3">
                                     {t("Key Responsibilities", lang)}
                                 </h3>
-                                <div className="leading-relaxed">
-                                    {job.key_responsibilities}
-                                </div>
+                                <div
+                                    className="leading-relaxed"
+                                    dangerouslySetInnerHTML={{
+                                        __html: job.key_responsibilities,
+                                    }}
+                                ></div>
                             </>
                         )}
 
@@ -84,9 +90,12 @@ export default function JobDetails({ job, lang }) {
                                 <h3 className="title text-xl font-semibold mt-8 mb-3">
                                     {t("Skills & Experience", lang)}
                                 </h3>
-                                <div className="leading-relaxed">
-                                    {job.skills_and_experience}
-                                </div>
+                                <div
+                                    className="leading-relaxed"
+                                    dangerouslySetInnerHTML={{
+                                        __html: job.skills_and_experience,
+                                    }}
+                                ></div>
                             </>
                         )}
                     </div>

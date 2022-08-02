@@ -59,4 +59,13 @@ class User extends Authenticatable
     {
         return $this->user_type === 'hr-representative';
     }
+
+
+    /**
+     * Relationship to Jobs
+     */
+    public function jobs()
+    {
+        return $this->hasMany(Job::class);
+    }
 }

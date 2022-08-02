@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\HumanDate;
 
-class Application extends Model
+class JobApplication extends Model
 {
-    use HasFactory;
+    use HasFactory, HumanDate;
 
     protected $appends = ['humanCreatedAt'];
 
@@ -33,9 +34,5 @@ class Application extends Model
             $query->where('jobs.user_id', auth()->id());
         });
 
-    }
-
-    public function getHumanCreatedAtAttribute() {
-        return $this->created_at->format('jS F Y H:iA');
     }
 }
