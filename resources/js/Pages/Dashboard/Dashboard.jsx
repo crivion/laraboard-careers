@@ -24,7 +24,7 @@ export default function Dashboard(props) {
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         {!applications.data.length && (
-                            <div class="p-6 font-semibold text-lg">
+                            <div className="p-6 font-semibold text-lg">
                                 No applicants applied on any of your posted jobs
                             </div>
                         )}
@@ -35,6 +35,8 @@ export default function Dashboard(props) {
                                     "ID",
                                     "Applicant",
                                     "Job",
+                                    "Department",
+                                    "Location",
                                     "Status",
                                     "Date",
                                     "View",
@@ -45,7 +47,7 @@ export default function Dashboard(props) {
                                     <tr key={a.id}>
                                         <TableTd field="ID">{a.id}</TableTd>
                                         <TableTd field="Applicant">
-                                            <span class="font-medium">
+                                            <span className="font-medium">
                                                 {a.name}
                                             </span>
                                         </TableTd>
@@ -59,6 +61,12 @@ export default function Dashboard(props) {
                                             >
                                                 {a.job.job_title}
                                             </a>
+                                        </TableTd>
+                                        <TableTd field="Department">
+                                            {a.job.department?.department_name}
+                                        </TableTd>
+                                        <TableTd field="Location">
+                                            {a.job.location?.location_name}
                                         </TableTd>
                                         <TableTd field="Status">
                                             <StatusSpan status={a.status} />

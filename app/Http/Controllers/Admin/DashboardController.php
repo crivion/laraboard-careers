@@ -12,7 +12,10 @@ class DashboardController extends Controller
     {
 
         $applications = JobApplication::onMyJobs()
-                                    ->with('job:id,job_title,slug')
+                                    ->with(['job' => function($query) {
+                                        $query->with('department', 'location', 'user');
+                                    }])
+                                    ->orderByDesc('id')
                                     ->paginate(10);
 
         return Inertia::render('Dashboard/Dashboard', compact('applications'));

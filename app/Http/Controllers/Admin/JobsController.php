@@ -33,7 +33,7 @@ class JobsController extends Controller
     public function index()
     {
         $jobs = Job::postedByMe()
-                    ->with('department', 'location', 'contractType')
+                    ->with('department', 'location', 'contractType', 'user')
                     ->withCount('applications')
                     ->orderByDesc('id')
                     ->paginate(10);

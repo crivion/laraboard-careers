@@ -8,6 +8,8 @@ import TableTd from "@/Components/TableTd";
 export default function Jobs(props) {
     const jobs = props.jobs;
 
+    console.log(jobs);
+
     return (
         <Authenticated
             auth={props.auth}
@@ -57,6 +59,15 @@ export default function Jobs(props) {
                                                 >
                                                     {job.job_title}
                                                 </a>
+                                                {props.auth.user.user_type ===
+                                                    "admin" && (
+                                                    <>
+                                                        <p className=" text-gray-500 text-sm">
+                                                            Created By:{" "}
+                                                            {job.user.name}
+                                                        </p>
+                                                    </>
+                                                )}
                                             </TableTd>
                                             <TableTd field="Applicants">
                                                 {job.applications_count}
