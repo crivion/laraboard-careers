@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use App\Traits\HumanDate;
+use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class JobApplication extends Model
 {
@@ -34,6 +35,36 @@ class JobApplication extends Model
         return $query->whereHas('job', function($query) {
             $query->where('jobs.user_id', auth()->id());
         });
+
+    }
+
+    public function scopeApplyFilters($query, Request $request) {
+        
+        if($request->filled('applicant')) {
+            $query->where('name', 'like', '%' . $request->applicant . '%');
+        }
+
+        if($request->filled('jobId')) {
+            $query->whereHas('job', function($query) use ($request) {
+                $query->where('jobs.id', $request->jobId);
+            });
+        }
+
+        if($request->filled('department_id')) {
+            $query->whereHas('job', function($query) use ($request) {
+                $query->where('department_id', $request->department_id);
+            });
+        }
+
+        if($request->filled('location_id')) {
+            $query->whereHas('job', function($query) use ($request) {
+                $query->where('location_id', $request->location_id);
+            });
+        }
+
+        if($request->filled('applicant_status')) {
+            $query->where('status', $request->applicant_status);
+        }
 
     }
 }

@@ -25,6 +25,7 @@ export default function JobFilters({
             { keyword, department, contractType, location },
             {
                 preserveState: true,
+                preserveScroll: true,
                 replace: true,
                 onBefore: () => {
                     setProcessing(true);

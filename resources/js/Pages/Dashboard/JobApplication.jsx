@@ -39,7 +39,7 @@ export default function jobApplication({ jobApplication, auth, errors }) {
                                 <span className="inline-flex rounded-md">
                                     <button
                                         type="button"
-                                        className="inline-flex items-center px-3 py-2 border border-transparent leading-4 font-medium rounded-md text-white bg-blue-700 focus:outline-none transition ease-in-out duration-150"
+                                        className="inline-flex items-center px-3 py-2 border border-transparent leading-4 font-medium rounded-md text-white bg-gray-900 focus:outline-none transition ease-in-out duration-150"
                                     >
                                         Set Status As
                                         <svg
@@ -60,31 +60,31 @@ export default function jobApplication({ jobApplication, auth, errors }) {
 
                             <Dropdown.Content>
                                 <button
-                                    className="px-3 py-1 block w-full text-left text-gray-800 hover:bg-blue-700 hover:text-white"
+                                    className="px-3 py-1 block w-full text-left text-gray-800 hover:bg-gray-900 hover:text-white"
                                     onClick={(e) => updateStatus("new")}
                                 >
                                     Set As New
                                 </button>
                                 <button
-                                    className="px-3 py-1 block w-full text-left text-gray-800 hover:bg-blue-700 hover:text-white"
+                                    className="px-3 py-1 block w-full text-left text-gray-800 hover:bg-gray-900 hover:text-white"
                                     onClick={(e) => updateStatus("shortlisted")}
                                 >
                                     Shortlisted
                                 </button>
                                 <button
-                                    className="px-3 py-1 block w-full text-left text-gray-800 hover:bg-blue-700 hover:text-white"
+                                    className="px-3 py-1 block w-full text-left text-gray-800 hover:bg-gray-900 hover:text-white"
                                     onClick={(e) => updateStatus("dismissed")}
                                 >
                                     Dismissed
                                 </button>
                                 <button
-                                    className="px-3 py-1 block w-full text-left text-gray-800 hover:bg-blue-700 hover:text-white"
+                                    className="px-3 py-1 block w-full text-left text-gray-800 hover:bg-gray-900 hover:text-white"
                                     onClick={(e) => updateStatus("interviewed")}
                                 >
                                     Interviewed
                                 </button>
                                 <button
-                                    className="px-3 py-1 block w-full text-left text-gray-800 hover:bg-blue-700 hover:text-white"
+                                    className="px-3 py-1 block w-full text-left text-gray-800 hover:bg-gray-900 hover:text-white"
                                     onClick={(e) => updateStatus("hired")}
                                 >
                                     Hired

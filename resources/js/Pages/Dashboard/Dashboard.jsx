@@ -4,9 +4,15 @@ import { Link, Head } from "@inertiajs/inertia-react";
 import TableHead from "@/Components/TableHead";
 import TableTd from "@/Components/TableTd";
 import StatusSpan from "@/Components/StatusSpan";
+import JobApplicationFilters from "@/Components/JobApplicationFilters";
+import Pagination from "@/Components/Pagination";
 
 export default function Dashboard(props) {
     const applications = props.applications;
+    const departments = props.departments;
+    const locations = props.locations;
+    const myPostedJobs = props.myPostedJobs;
+    const queryFilters = props.queryFilters;
 
     return (
         <Authenticated
@@ -22,6 +28,12 @@ export default function Dashboard(props) {
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                    <JobApplicationFilters
+                        departments={departments}
+                        locations={locations}
+                        myPostedJobs={myPostedJobs}
+                        queryFilters={queryFilters}
+                    />
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         {!applications.data.length && (
                             <div className="p-6 font-semibold text-lg">
@@ -90,6 +102,8 @@ export default function Dashboard(props) {
                             </tbody>
                         </table>
                     </div>
+
+                    <Pagination links={applications.links} />
                 </div>
             </div>
         </Authenticated>

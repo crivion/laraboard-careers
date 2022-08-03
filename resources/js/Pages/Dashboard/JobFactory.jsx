@@ -205,6 +205,7 @@ export default function CreateJob(props) {
                                         <Input
                                             name="expires_at"
                                             type="date"
+                                            value={data.expires_at}
                                             handleChange={(e) =>
                                                 setData(
                                                     e.target.name,

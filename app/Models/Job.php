@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use App\Traits\HumanDate;
 use Illuminate\Http\Request;
 use Spatie\Sluggable\HasSlug;
+use Illuminate\Support\Carbon;
 use Spatie\Sluggable\SlugOptions;
-use App\Traits\HumanDate;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Job extends Model
 {
@@ -119,5 +120,9 @@ class Job extends Model
     public function applications()
     {
         return $this->hasMany(JobApplication::class);
+    }
+
+    public function getExpiresAtAttribute($value) {
+        return $value ? Carbon::parse($value)->format('Y-m-d') : null;
     }
 }
