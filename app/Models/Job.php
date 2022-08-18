@@ -15,86 +15,99 @@ class Job extends Model
     use HasFactory, HasSlug, HumanDate;
 
     protected $fillable = [
-        'job_title',
-        'slug',
-        'job_description',
-        'key_responsibilities',
-        'skills_and_experience',
-        'salary',
-        'location_id',
-        'user_id',
-        'contract_type_id',
-        'department_id',
-        'created_at',
-        'expires_at',
-        'updated_at',
-        'deleted_at',
+        "job_title",
+        "slug",
+        "job_description",
+        "key_responsibilities",
+        "skills_and_experience",
+        "salary",
+        "location_id",
+        "user_id",
+        "contract_type_id",
+        "department_id",
+        "created_at",
+        "expires_at",
+        "updated_at",
+        "deleted_at",
     ];
 
-    protected $appends = [
-        'isExpired',
-        'humanCreatedAt'
-    ];
+    protected $appends = ["isExpired", "humanCreatedAt"];
 
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('job_title')
-            ->saveSlugsTo('slug');
+            ->generateSlugsFrom("job_title")
+            ->saveSlugsTo("slug");
     }
 
     public function getRouteKeyName()
     {
-        return 'slug';
+        return "slug";
     }
 
     public function scopeNotExpired($query)
     {
-        return $query->where(function($query) {
-            $query->where('expires_at', '>', now())
-                ->orWhereNull('expires_at');
+        return $query->where(function ($query) {
+            $query->where("expires_at", ">", now())->orWhereNull("expires_at");
         });
     }
 
     public function getIsExpiredAttribute()
     {
-        if(is_null($this->expires_at)) {
+        if (is_null($this->expires_at)) {
             return false;
         }
-        
+
         return $this->expires_at < now();
     }
 
     public function scopeApplyFilters($query, Request $request)
     {
-        if ($request->filled('keyword')) {
+        if ($request->filled("keyword")) {
             $query->where(function ($query) use ($request) {
-                $query->where('job_title', 'like', '%'.$request->keyword.'%')
-                    ->orWhere('job_description', 'like', '%'.$request->keyword.'%')
-                    ->orWhere('key_responsibilities', 'like', '%'.$request->keyword.'%')
-                    ->orWhere('skills_and_experience', 'like', '%'.$request->keyword.'%');
+                $query
+                    ->where("job_title", "like", "%" . $request->keyword . "%")
+                    ->orWhere(
+                        "job_description",
+                        "like",
+                        "%" . $request->keyword . "%"
+                    )
+                    ->orWhere(
+                        "key_responsibilities",
+                        "like",
+                        "%" . $request->keyword . "%"
+                    )
+                    ->orWhere(
+                        "skills_and_experience",
+                        "like",
+                        "%" . $request->keyword . "%"
+                    );
             });
         }
 
-        if ($request->filled('department')) {
-            $query->where('department_id', $request->department);
+        if ($request->filled("department")) {
+            $query->where("department_id", $request->department);
         }
 
-        if ($request->filled('contractType')) {
-            $query->where('contract_type_id', $request->contractType);
+        if ($request->filled("contractType")) {
+            $query->where("contract_type_id", $request->contractType);
         }
 
-        if ($request->filled('location')) {
-            $query->where('location_id', $request->location);
+        if ($request->filled("location")) {
+            $query->where("location_id", $request->location);
         }
     }
 
-    public function scopePostedByMe($query) {
-
-        if(auth()->user()->isAdmin()) {
+    public function scopePostedByMe($query)
+    {
+        if (
+            auth()
+                ->user()
+                ->isAdmin()
+        ) {
             return $query;
         }
-        return $query->where('user_id', auth()->user()->id);
+        return $query->where("user_id", auth()->user()->id);
     }
 
     public function user()
@@ -122,7 +135,8 @@ class Job extends Model
         return $this->hasMany(JobApplication::class);
     }
 
-    public function getExpiresAtAttribute($value) {
-        return $value ? Carbon::parse($value)->format('Y-m-d') : null;
+    public function getExpiresAtAttribute($value)
+    {
+        return $value ? Carbon::parse($value)->format("Y-m-d") : null;
     }
 }

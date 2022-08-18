@@ -14,7 +14,6 @@ use App\Http\Requests\StoreJobRequest;
 
 class JobsController extends Controller
 {
-
     /**
      * Create the controller instance.
      *
@@ -22,7 +21,7 @@ class JobsController extends Controller
      */
     public function __construct()
     {
-        $this->authorizeResource(Job::class, 'job');
+        $this->authorizeResource(Job::class, "job");
     }
 
     /**
@@ -30,15 +29,25 @@ class JobsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $jobs = Job::postedByMe()
-                    ->with('department', 'location', 'contractType', 'user')
-                    ->withCount('applications')
-                    ->orderByDesc('id')
-                    ->paginate(10);
+        $departments = Department::all();
+        $locations = Location::all();
 
-        return Inertia::render('Dashboard/Jobs', compact('jobs'));
+        $jobs = Job::postedByMe()
+            ->with("department", "location", "contractType", "user")
+            ->withCount("applications")
+            ->orderByDesc("id")
+            ->applyFilters($request)
+            ->paginate(10)
+            ->withQueryString();
+
+        $queryFilters = $request->only(["keyword", "department", "location"]);
+
+        return Inertia::render(
+            "Dashboard/Jobs",
+            compact("jobs", "departments", "locations", "queryFilters")
+        );
     }
 
     /**
@@ -52,8 +61,11 @@ class JobsController extends Controller
         $locations = Location::all();
         $contractTypes = ContractType::all();
         $job = null;
-        
-        return Inertia::render('Dashboard/JobFactory', compact('job', 'departments', 'locations', 'contractTypes'));
+
+        return Inertia::render(
+            "Dashboard/JobFactory",
+            compact("job", "departments", "locations", "contractTypes")
+        );
     }
 
     /**
@@ -66,19 +78,22 @@ class JobsController extends Controller
     {
         // listing
         $listing = $request->validated();
-        $listing['salary'] = request('salary');
-        $listing['key_responsibilities'] = request('key_responsibilities');
-        $listing['skills_and_experience'] = request('skills_and_experience');
-        $listing['expires_at'] = request('expires_at');
+        $listing["salary"] = request("salary");
+        $listing["key_responsibilities"] = request("key_responsibilities");
+        $listing["skills_and_experience"] = request("skills_and_experience");
+        $listing["expires_at"] = request("expires_at");
 
         // create job
-        auth()->user()->jobs()->create($listing);
+        auth()
+            ->user()
+            ->jobs()
+            ->create($listing);
 
         // flash success message
-        session()->flash('success', 'Job listing created successfully.');
-        
+        session()->flash("success", "Job listing created successfully.");
+
         // redirect to jobs index
-        return redirect()->route('jobs.index');
+        return redirect()->route("jobs.index");
     }
 
     /**
@@ -99,12 +114,14 @@ class JobsController extends Controller
      */
     public function edit(Job $job)
     {
-
         $departments = Department::all();
         $locations = Location::all();
         $contractTypes = ContractType::all();
 
-        return Inertia::render('Dashboard/JobFactory', compact('job', 'departments', 'locations', 'contractTypes'));
+        return Inertia::render(
+            "Dashboard/JobFactory",
+            compact("job", "departments", "locations", "contractTypes")
+        );
     }
 
     /**
@@ -118,21 +135,20 @@ class JobsController extends Controller
     {
         // listing
         $listing = $request->validated();
-        $listing['salary'] = request('salary');
-        $listing['key_responsibilities'] = request('key_responsibilities');
-        $listing['skills_and_experience'] = request('skills_and_experience');
-        $listing['expires_at'] = request('expires_at');
+        $listing["salary"] = request("salary");
+        $listing["key_responsibilities"] = request("key_responsibilities");
+        $listing["skills_and_experience"] = request("skills_and_experience");
+        $listing["expires_at"] = request("expires_at");
 
         // update job
         $job->update($listing);
 
         // flash success message
-        session()->flash('success', 'Job listing updated successfully.');
-        
-        // redirect to jobs index
-        return redirect()->route('jobs.index');
-    }
+        session()->flash("success", "Job listing updated successfully.");
 
+        // redirect to jobs index
+        return redirect()->route("jobs.index");
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -142,6 +158,5 @@ class JobsController extends Controller
      */
     public function destroy($id)
     {
-
     }
 }

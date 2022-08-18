@@ -6,31 +6,18 @@ import Input from "./Input";
 import Button from "./Button";
 import { Inertia } from "@inertiajs/inertia";
 
-export default function JobApplicationsFilters({
+export default function DashboardJobFilters({
     departments,
     locations,
-    myPostedJobs,
     queryFilters,
 }) {
-    console.log(queryFilters);
-
     const [isOpen, setIsOpen] = useState(false);
     const [department_id, setDepartmentId] = useState(
-        queryFilters.department_id || ""
+        queryFilters.department || ""
     );
-    const [location_id, setLocationId] = useState(
-        queryFilters.location_id || ""
-    );
-    const [jobId, setJobId] = useState(queryFilters.jobId || "");
+    const [jobTitle, setJobTitle] = useState(queryFilters.keyword || "");
+    const [location_id, setLocationId] = useState(queryFilters.location);
     const [processing, setProcessing] = useState(false);
-
-    const statuses = [
-        { value: "new", label: "New" },
-        { value: "shortlisted", label: "Shortlisted" },
-        { value: "interviewed", label: "Interviewed" },
-        { value: "hired", label: "Hired" },
-        { value: "dismissed", label: "Dismissed" },
-    ];
 
     const openFilters = (e) => {
         e.preventDefault();
@@ -46,8 +33,12 @@ export default function JobApplicationsFilters({
         e.preventDefault();
 
         Inertia.get(
-            route("dashboard"),
-            { department_id, location_id, jobId },
+            route("jobs.index"),
+            {
+                keyword: jobTitle,
+                department: department_id,
+                location: location_id,
+            },
             {
                 preserveState: true,
                 preserveScroll: true,
@@ -65,26 +56,22 @@ export default function JobApplicationsFilters({
 
     return (
         <>
-            <LinkButton className="mb-4" handleClick={(e) => openFilters(e)}>
+            <LinkButton
+                className="mb-4 mr-3"
+                handleClick={(e) => openFilters(e)}
+            >
                 Filters
             </LinkButton>
             <Drawer isOpen={isOpen} onClose={closeFilters}>
                 <form onSubmit={submit}>
                     <div className="p-6">
-                        <label className="font-semibold text-lg mb-1 mt-2 block">
-                            Job
+                        <label className="font-semibold text-lg mb-1 block">
+                            Job Title
                         </label>
-                        <Select
+                        <Input
                             className="w-full"
-                            isClearable={true}
-                            isSearchable={true}
-                            onChange={(e) => setJobId(e?.id)}
-                            options={myPostedJobs}
-                            getOptionLabel={(job) => job.job_title}
-                            getOptionValue={(job) => job.id}
-                            defaultValue={myPostedJobs.filter(
-                                (job) => job.id == jobId
-                            )}
+                            handleChange={(e) => setJobTitle(e.target.value)}
+                            value={jobTitle}
                         />
 
                         <label className="font-semibold text-lg mb-1 mt-2 block">

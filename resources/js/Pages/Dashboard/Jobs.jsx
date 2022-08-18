@@ -4,9 +4,14 @@ import { Head, Link } from "@inertiajs/inertia-react";
 import LinkButton from "@/Components/LinkButton";
 import TableHead from "@/Components/TableHead";
 import TableTd from "@/Components/TableTd";
+import DashboardJobsFilters from "@/Components/DashboardJobsFilters";
+import Pagination from "@/Components/Pagination";
 
 export default function Jobs(props) {
     const jobs = props.jobs;
+    const departments = props.departments;
+    const locations = props.locations;
+    const queryFilters = props.queryFilters;
 
     return (
         <Authenticated
@@ -22,6 +27,12 @@ export default function Jobs(props) {
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                    <DashboardJobsFilters
+                        departments={departments}
+                        locations={locations}
+                        queryFilters={queryFilters}
+                    />
+
                     <LinkButton className="mb-5" href={route("jobs.create")}>
                         Create Job Listing
                     </LinkButton>
@@ -97,6 +108,7 @@ export default function Jobs(props) {
                             </tbody>
                         </table>
                     </div>
+                    <Pagination links={jobs.links} />
                 </div>
             </div>
         </Authenticated>
