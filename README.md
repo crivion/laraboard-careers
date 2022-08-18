@@ -13,7 +13,7 @@ Created for companies to have their own place for the HR department to advertise
 
 ## WORK IS IN PROGRESS
 
-# Frontend
+### Frontend
 
 -   Homepage with all the open (not expired) job/careers listings
 -   Search jobs by job title/keyword, department, contract type and location
@@ -22,7 +22,7 @@ Created for companies to have their own place for the HR department to advertise
 -   @todo: team page
 -   @todo: contact page
 
-# Dashboard (Admin / Backend)
+### Dashboard (Admin / Backend)
 
 -   View and filter job applications (job, applicant name, applicant status, department, location)
 -   View full details and update status (new, shortlisted, hired, interviewed, dismissed)
