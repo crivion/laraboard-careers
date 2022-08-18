@@ -13,7 +13,24 @@ Created for companies to have their own place for the HR department to advertise
 
 ## WORK IS IN PROGRESS
 
-Current status: BUILDING A BASIC LAYOUT
+# Frontend
+
+-   Homepage with all the open (not expired) job/careers listings
+-   Search jobs by job title/keyword, department, contract type and location
+-   View Individual Job Listing
+-   Apply to Jobs (including attaching a PDF Resume)
+-   @todo: team page
+-   @todo: contact page
+
+# Dashboard (Admin / Backend)
+
+-   View and filter job applications (job, applicant name, applicant status, department, location)
+-   View full details and update status (new, shortlisted, hired, interviewed, dismissed)
+-   Jobs CRUD: View / Create / Update Jobs
+-   Filter jobs (title/keyword, department, location)
+-   @todo: download CV PDF File in job application details page
+- @todo: delete job listing
+- @todo: - Must be able to manage locations, contract types and departments…
 
 ## License
 
