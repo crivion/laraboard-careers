@@ -236,7 +236,7 @@ export default function Authenticated({ auth, header, children }) {
                 </header>
             )}
 
-            <main>{children}</main>
+            <main className="px-2 md:px-0">{children}</main>
         </div>
     );
 }
