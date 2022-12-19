@@ -102,7 +102,6 @@ export default function Dashboard(props) {
                             </tbody>
                         </table>
                     </div>
-
                     <Pagination links={applications.links} />
                 </div>
             </div>

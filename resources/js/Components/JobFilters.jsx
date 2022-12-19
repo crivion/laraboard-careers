@@ -38,7 +38,7 @@ export default function JobFilters({
     };
 
     return (
-        <div className="rounded-lg bg-light-blue px-5 py-3 ml-5">
+        <div className="rounded-lg bg-light-blue px-5 py-3 md:ml-5 mb-10 md:mb-0">
             <form name="jobFilters" id="jobFilters" onSubmit={submit}>
                 <h3 className="text-lg font-semibold text-neutral-800 mt-5 mb-2">
                     {t("Search By Keyword", lang)}

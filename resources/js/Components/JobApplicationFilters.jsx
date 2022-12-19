@@ -18,10 +18,12 @@ export default function JobApplicationsFilters({
     const [department_id, setDepartmentId] = useState(
         queryFilters.department_id || ""
     );
-    const [location_id, setLocationId] = useState(
-        queryFilters.location_id || ""
+    const [location_id, setLocationId] = useState(queryFilters.location_id);
+    const [applicant_status, setApplicantStatus] = useState(
+        queryFilters.applicant_status || ""
     );
     const [jobId, setJobId] = useState(queryFilters.jobId || "");
+    const [applicant, setApplicant] = useState(queryFilters.applicant || "");
     const [processing, setProcessing] = useState(false);
 
     const statuses = [
@@ -47,7 +49,7 @@ export default function JobApplicationsFilters({
 
         Inertia.get(
             route("dashboard"),
-            { department_id, location_id, jobId },
+            { applicant, department_id, location_id, applicant_status, jobId },
             {
                 preserveState: true,
                 preserveScroll: true,
@@ -71,6 +73,15 @@ export default function JobApplicationsFilters({
             <Drawer isOpen={isOpen} onClose={closeFilters}>
                 <form onSubmit={submit}>
                     <div className="p-6">
+                        <label className="font-semibold text-lg mb-1 block">
+                            Applicant Name
+                        </label>
+                        <Input
+                            className="w-full"
+                            handleChange={(e) => setApplicant(e.target.value)}
+                            value={applicant}
+                        />
+
                         <label className="font-semibold text-lg mb-1 mt-2 block">
                             Job
                         </label>
@@ -116,6 +127,20 @@ export default function JobApplicationsFilters({
                             options={locations}
                             defaultValue={locations.filter(
                                 (loc) => loc.id == location_id
+                            )}
+                        />
+
+                        <label className="font-semibold text-lg mb-1 mt-2 block">
+                            Status
+                        </label>
+                        <Select
+                            className="w-full"
+                            isClearable={true}
+                            isSearchable={true}
+                            onChange={(e) => setApplicantStatus(e?.value)}
+                            options={statuses}
+                            defaultValue={statuses.filter(
+                                (s) => s.value == applicant_status
                             )}
                         />
                     </div>

@@ -40,7 +40,7 @@ export default function Homepage({
                 </div>
             </div>
 
-            <div className="max-w-screen-xl mx-auto md:flex space-20 px-3">
+            <div className="max-w-screen-xl mx-auto flex flex-col-reverse md:flex-row md:space-x-20 px-3">
                 <div className="md:w-2/3">
                     {jobs?.data.length > 0
                         ? jobs.data.map((job) => (

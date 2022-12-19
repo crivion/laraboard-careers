@@ -12,7 +12,7 @@ export default function JobCard({ job }) {
                 {job.job_title}
             </Link>
 
-            <div className="mt-3 flex items-center space-x-5">
+            <div className="mt-3 flex flex-col md:flex-row md:items-center md:space-x-5">
                 <div className="text-neutral-600 flex items-center">
                     <img src="/assets/images/tag.svg" className="w-6" />{" "}
                     <span className="ml-1">

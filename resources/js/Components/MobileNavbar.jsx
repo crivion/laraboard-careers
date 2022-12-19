@@ -28,23 +28,7 @@ export default function MobileNavbar() {
                         href="{{ route('explore') }}"
                         className="hover:text-pink-600"
                     >
-                        Team
-                    </a>
-                </li>
-                <li className="my-3 ml-5">
-                    <a
-                        href="{{ route('blog') }}"
-                        className="hover:text-pink-600"
-                    >
-                        Blog
-                    </a>
-                </li>
-                <li className="my-3 ml-5">
-                    <a
-                        href="{{ route('register') }}"
-                        className="hover:text-pink-600"
-                    >
-                        Contact
+                        Our Team
                     </a>
                 </li>
                 <li className="my-3 ml-5">
