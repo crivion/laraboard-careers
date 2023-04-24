@@ -45,6 +45,7 @@ Created for companies to have their own place for the HR department to advertise
 5) Migrate database: php artisan migrate
 6) Generate an admin user to start with: php artisan laraboard:create-admin
 7) You can login via https://yourdomain.com/dashboard with the user you created at step 6
+8) Link storage folder (where cv pdf's are stored): php artisan storage:link
 
 
 ## License
