@@ -1,21 +1,19 @@
 import React from "react";
-import { Head, usePage } from "@inertiajs/inertia-react";
+import { Head } from "@inertiajs/inertia-react";
 import Front from "@/Layouts/Front";
 import t from "@/Hooks/useTranslate";
 import ApplyForm from "@/Components/ApplyForm";
 import HRRepresentative from "@/Components/HRRepresentative";
 
 export default function JobDetails({ job, lang }) {
-    const { user } = usePage().props;
     return (
         <Front>
             <Head title={job.job_title} />
-            <div className="inner-header mb-5">
+            <div className="inner-header my-5">
                 <div className="max-w-screen-xl mx-auto px-3 pt-3">
                     {job.isExpired && (
                         <div className="mt-10 bg-red-100 mb-3 border border-red-400 text-red-700 px-4 py-3 rounded relative">
-                            This job is expired and only you can see it while
-                            being logged in
+                            {t("This job is expired and only you can see it while being logged in ", lang)}
                         </div>
                     )}
                     <h1 className="jobTitle font-semibold text-5xl text-blue-800 mt-10">

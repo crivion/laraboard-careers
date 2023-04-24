@@ -23,11 +23,10 @@ export default function Homepage({
                 <div className="max-w-screen-xl mx-auto lg:flex items-center space-20 px-3">
                     <div className="md:w-2/3">
                         <h1 className="font-semibold text-6xl text-blue-800">
-                            LaraBoard Careers
+                            {t("LaraBoard Careers", lang)}
                         </h1>
                         <h2 className="text-3xl mt-10 text-zinc-700 leading-snug">
-                            Check our available positions - we are always
-                            looking for great people to join our company
+                            {t("Check our available positions - we are always looking for great people to join our company", lang)}
                         </h2>
                     </div>
                     <div className="md:w-3/3 pt-10 lg:pt-0">
@@ -44,15 +43,15 @@ export default function Homepage({
                 <div className="md:w-2/3">
                     {jobs?.data.length > 0
                         ? jobs.data.map((job) => (
-                              <JobCard key={job.id} job={job} />
-                          ))
+                            <JobCard key={job.id} job={job} />
+                        ))
                         : t("No open positions", lang)}
 
                     <div className="mt-5 mb-10">
                         {jobs?.prev_page_url && (
                             <Link
                                 href={jobs.prev_page_url}
-                                className="rounded border-2 px-4 py-1.5 font-medium text-neutral-500 border-neutral-400 hover:border-blue-500 hover:text-blue-500"
+                                className="rounded border-2 px-4 py-1.5 font-medium text-neutral-500 border-neutral-400 hover:border-blue-500 hover:text-blue-500 mr-2"
                             >
                                 {t("Previous", lang)}
                             </Link>

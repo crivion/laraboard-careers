@@ -5,7 +5,6 @@ use App\Http\Controllers\Front\JobDetailsController;
 use App\Http\Controllers\Front\StoreJobApplicationController;
 use App\Http\Controllers\Front\TeamController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,5 +23,5 @@ Route::post('position/{job}/store-application', [StoreJobApplicationController::
 Route::get('application/{job}', [StoreJobApplicationController::class, 'applicationReceived'])->name('jobApplicationReceived');
 Route::get('team', TeamController::class)->name('team');
 
-require __DIR__.'/auth.php';
-require __DIR__.'/admin.php';
+require __DIR__ . '/auth.php';
+require __DIR__ . '/admin.php';

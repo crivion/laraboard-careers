@@ -5,7 +5,7 @@ export default function JobApplicationReceived({ job, lang }) {
     return (
         <Front>
             <Head title={`Application Received ${job.job_title}`} />
-            <div className="inner-header mb-5">
+            <div className="inner-header mb-5 mt-10">
                 <div className="max-w-screen-xl mx-auto px-3 pt-3">
                     <h1 className="jobTitle font-semibold text-5xl text-blue-800">
                         {t("Application Received", lang)}
