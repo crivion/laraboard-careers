@@ -1,7 +1,6 @@
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import NavLink from "@/Components/NavLink";
 import { Link } from "@inertiajs/inertia-react";
-import MobileNavbar from "@/Components/MobileNavbar";
 
 export default function Navbar({ scroll }) {
     return (
@@ -25,15 +24,10 @@ export default function Navbar({ scroll }) {
                                 </span>
                             </Link>
                         </div>
-                        <div className="items-center hidden md:flex">
-                            <NavLink href={route("homepage")}>Home</NavLink>
-                            <NavLink href="/team">Our Team</NavLink>
-                        </div>
                     </div>
                 </div>
             </nav>
 
-            <MobileNavbar />
         </>
     );
 }

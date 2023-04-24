@@ -21,6 +21,7 @@ class JobsController extends Controller
      */
     public function __construct()
     {
+        // uses JobPolicy to check for permissions
         $this->authorizeResource(Job::class, "job");
     }
 
@@ -156,7 +157,12 @@ class JobsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Job $job)
     {
+        $job->delete();
+
+        session()->flash("success", "Job archived");
+
+        return redirect()->route('jobs.index');
     }
 }

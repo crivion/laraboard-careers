@@ -56,22 +56,32 @@ export default function Authenticated({ auth, header, children }) {
                                     href={route("jobs.index")}
                                     active={
                                         route().current("jobs.index") ||
-                                        route().current("jobs.create")
+                                        route().current("jobs.create") ||
+                                        route().current("jobs.edit")
                                     }
                                 >
                                     Jobs
                                 </NavLink>
-
+                                <NavLink
+                                    href={route("jobs.index")}
+                                    active={
+                                        route().current("departments.index") ||
+                                        route().current("departments.create")
+                                    }
+                                >
+                                    Departments
+                                </NavLink>
+                                <NavLink
+                                    href={route("jobs.index")}
+                                    active={
+                                        route().current("locations.index") ||
+                                        route().current("locations.create")
+                                    }
+                                >
+                                    Locations
+                                </NavLink>
                                 {auth.can.admin && (
                                     <>
-                                        <NavLink
-                                            href={route("admin.team")}
-                                            active={route().current(
-                                                "admin.team"
-                                            )}
-                                        >
-                                            Team
-                                        </NavLink>
                                         <NavLink
                                             href={route("admin.users")}
                                             active={route().current(
@@ -189,12 +199,7 @@ export default function Authenticated({ auth, header, children }) {
                         </ResponsiveNavLink>
                         {auth.can.admin && (
                             <>
-                                <ResponsiveNavLink
-                                    href={route("jobs.index")}
-                                    active={route().current("jobs.index")}
-                                >
-                                    Team
-                                </ResponsiveNavLink>
+
                                 <ResponsiveNavLink
                                     href={route("admin.users")}
                                     active={route().current("admin.users")}

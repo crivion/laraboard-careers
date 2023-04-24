@@ -8,19 +8,22 @@ use Inertia\Inertia;
 
 class JobApplicationController extends Controller
 {
-    public function view(JobApplication $jobApplication) {
-        
+    public function view(JobApplication $jobApplication)
+    {
+
+        // uses JobApplicationPolicy
         $this->authorize('view', $jobApplication);
 
         // append job details to the bound $jobApplication
         $jobApplication->load('job', 'job.location', 'job.department', 'job.contractType');
 
         return Inertia::render('Dashboard/JobApplication', compact('jobApplication'));
-    
     }
 
-    public function updateStatus(JobApplication $jobApplication) {
-        
+    public function updateStatus(JobApplication $jobApplication)
+    {
+
+        // uses JobApplicationPolicy
         $this->authorize('updateStatus', $jobApplication);
 
         $oldStatus = $jobApplication->status;
@@ -33,8 +36,7 @@ class JobApplicationController extends Controller
             'oldStatus' => $oldStatus,
             'newStatus' => $jobApplication->status,
         ]));
-        
+
         return back();
-    
     }
 }

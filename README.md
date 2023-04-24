@@ -19,17 +19,15 @@ Created for companies to have their own place for the HR department to advertise
 -   Search jobs by job title/keyword, department, contract type and location
 -   View Individual Job Listing
 -   Apply to Jobs (including attaching a PDF Resume)
--   @todo: team page
--   @todo: contact page
 
 ### Dashboard (Admin / Backend)
 
 -   View and filter job applications (job, applicant name, applicant status, department, location)
 -   View full details and update status (new, shortlisted, hired, interviewed, dismissed)
--   Jobs CRUD: View / Create / Update Jobs
+-   Jobs CRUD: View / Create / Update / Delete Jobs
 -   Filter jobs (title/keyword, department, location)
 -   @todo: download CV PDF File in job application details page
-- @todo: delete job listing
+- Delete job listing
 - @todo: - Must be able to manage locations, contract types and departments…
 
 ## License

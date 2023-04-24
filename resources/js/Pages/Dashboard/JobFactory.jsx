@@ -7,6 +7,8 @@ import Button from "@/Components/Button";
 import { toast } from "react-toastify";
 import Select from "react-select";
 import { Inertia } from "@inertiajs/inertia";
+import Confirmation from "@/Components/Confirmation";
+import { useState } from "react";
 
 export default function CreateJob(props) {
     const job = props.job;
@@ -28,6 +30,15 @@ export default function CreateJob(props) {
     const departments = props.departments;
     const locations = props.locations;
     const contractTypes = props.contractTypes;
+    const [showConfirmation, setShowConfirmation] = useState(false);
+
+    const archiveListing = (e) => {
+        e.preventDefault();
+
+        Inertia.visit(route('jobs.destroy', { job: job.slug }), {
+            method: "DELETE"
+        });
+    }
 
     const submit = (e) => {
         e.preventDefault();
@@ -75,12 +86,39 @@ export default function CreateJob(props) {
                 </h2>
             }
         >
+
+            <Confirmation show={showConfirmation} onClose={() => setShowConfirmation(false)}>
+                <div className="p-5 text-gray-600 dark:text-gray-100 text-lg text-center">
+                    <p className="mb-5">
+                        Are you sure you want to delete this job listing?
+                    </p>
+                    <button className="px-3 py-1.5 bg-rose-500 hover:bg-rose-600 text-sm text-white rounded-md border border-rose-600" onClick={(e) => archiveListing(e)}>
+                        Yes
+                    </button>
+
+                    <button className="px-3 py-1.5 border rounded-md text-sm ml-2" onClick={(e) => setShowConfirmation(false)}>
+                        Cancel
+                    </button>
+                </div>
+            </Confirmation>
+
             <Head title="Job Listing" />
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+
+                    {job?.id && (
+                        <div className="flex justify-end px-6 mb-4">
+                            <button onClick={() => setShowConfirmation(true)} className="font-semibold bg-rose-500 rounded hover:bg-rose-600 px-2 py-1.5 text-white text-sm">
+                                Delete Job Listing
+                            </button>
+                        </div>
+                    )}
+
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 bg-white border-b border-gray-200">
+
+
                             <form onSubmit={submit}>
                                 <Label
                                     forInput="job_title"

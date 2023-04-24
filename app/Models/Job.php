@@ -9,10 +9,14 @@ use Illuminate\Support\Carbon;
 use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Job extends Model
 {
-    use HasFactory, HasSlug, HumanDate;
+    use HasFactory;
+    use HasSlug;
+    use HumanDate;
+    use SoftDeletes;
 
     protected $fillable = [
         "job_title",
@@ -102,8 +106,8 @@ class Job extends Model
     {
         if (
             auth()
-                ->user()
-                ->isAdmin()
+            ->user()
+            ->isAdmin()
         ) {
             return $query;
         }
