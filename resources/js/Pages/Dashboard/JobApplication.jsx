@@ -163,10 +163,11 @@ export default function jobApplication({ jobApplication, auth, errors }) {
 
                             <div className="mt-5 text-gray-800">
                                 <a
-                                    href=""
+                                    target="_blank"
+                                    href={route('job-application.download-cv', { jobApplication })}
                                     className="px-3 py-1.5 rounded hover:bg-gray-700 bg-gray-900 font-semibold text-white"
                                 >
-                                    Download CV PDF
+                                    View CV PDF
                                 </a>
                             </div>
                         </div>

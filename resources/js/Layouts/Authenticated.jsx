@@ -80,6 +80,15 @@ export default function Authenticated({ auth, header, children }) {
                                 >
                                     Locations
                                 </NavLink>
+                                <NavLink
+                                    href={route("jobs.index")}
+                                    active={
+                                        route().current("locations.index") ||
+                                        route().current("locations.create")
+                                    }
+                                >
+                                    Contract Types
+                                </NavLink>
                                 {auth.can.admin && (
                                     <>
                                         <NavLink

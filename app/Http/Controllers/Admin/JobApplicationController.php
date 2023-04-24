@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\JobApplication;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class JobApplicationController extends Controller
@@ -38,5 +39,14 @@ class JobApplicationController extends Controller
         ]));
 
         return back();
+    }
+
+    public function downloadPDF(JobApplication $jobApplication)
+    {
+
+        // pdf file
+        $cvPDF = $jobApplication->resume;
+
+        return response()->download(Storage::path($cvPDF));
     }
 }

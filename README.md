@@ -26,7 +26,7 @@ Created for companies to have their own place for the HR department to advertise
 -   View full details and update status (new, shortlisted, hired, interviewed, dismissed)
 -   Jobs CRUD: View / Create / Update / Delete Jobs
 -   Filter jobs (title/keyword, department, location)
--   @todo: download CV PDF File in job application details page
+-   View/Download CV PDF File in job application details page
 - Delete job listing
 - @todo: - Must be able to manage locations, contract types and departments…
 
