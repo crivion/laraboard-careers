@@ -63,10 +63,11 @@ export default function Authenticated({ auth, header, children }) {
                                     Jobs
                                 </NavLink>
                                 <NavLink
-                                    href={route("jobs.index")}
+                                    href={route("departments.index")}
                                     active={
                                         route().current("departments.index") ||
-                                        route().current("departments.create")
+                                        route().current("departments.create") ||
+                                        route().current("departments.edit")
                                     }
                                 >
                                     Departments

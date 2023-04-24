@@ -2,7 +2,7 @@ import React, { useEffect, Fragment } from "react";
 import ReactDOM from "react-dom";
 import { Transition } from "@headlessui/react";
 
-export default function Confirmation({
+export default function Modal({
   children,
   show = false,
   maxWidth = "2xl",

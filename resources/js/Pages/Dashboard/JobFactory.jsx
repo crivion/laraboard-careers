@@ -7,7 +7,7 @@ import Button from "@/Components/Button";
 import { toast } from "react-toastify";
 import Select from "react-select";
 import { Inertia } from "@inertiajs/inertia";
-import Confirmation from "@/Components/Confirmation";
+import Modal from "@/Components/Modal";
 import { useState } from "react";
 
 export default function CreateJob(props) {
@@ -87,7 +87,7 @@ export default function CreateJob(props) {
             }
         >
 
-            <Confirmation show={showConfirmation} onClose={() => setShowConfirmation(false)}>
+            <Modal show={showConfirmation} onClose={() => setShowConfirmation(false)}>
                 <div className="p-5 text-gray-600 dark:text-gray-100 text-lg text-center">
                     <p className="mb-5">
                         Are you sure you want to delete this job listing?
@@ -100,7 +100,7 @@ export default function CreateJob(props) {
                         Cancel
                     </button>
                 </div>
-            </Confirmation>
+            </Modal>
 
             <Head title="Job Listing" />
 

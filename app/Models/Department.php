@@ -16,5 +16,9 @@ class Department extends Model
     // no timestamps
     public $timestamps = false;
 
-
+    // has many jobs
+    public function jobs()
+    {
+        return $this->hasMany(Job::class);
+    }
 }
