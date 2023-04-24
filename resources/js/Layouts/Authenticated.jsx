@@ -79,9 +79,9 @@ export default function Authenticated({ auth, header, children }) {
                                     Locations
                                 </NavLink>
                                 <NavLink
-                                    href={route("jobs.index")}
+                                    href={route("contracts.index")}
                                     active={
-                                        route().current("locations.index")
+                                        route().current("contracts.index")
                                     }
                                 >
                                     Contract Types

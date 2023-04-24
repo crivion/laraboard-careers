@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ContractController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\JobsController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -15,6 +16,7 @@ Route::middleware(['auth', 'admin'])->prefix('dashboard')->group(function () {
     Route::get('job-application/download-cv/{jobApplication}', [JobApplicationController::class, 'downloadPDF'])->name('job-application.download-cv');
     Route::resource('departments', DepartmentsController::class);
     Route::resource('locations', LocationsController::class);
+    Route::resource('contracts', ContractController::class);
     Route::get('users', fn () => 'jobs admin')->name('admin.users');
 });
 

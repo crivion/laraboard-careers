@@ -29,8 +29,9 @@ Created for companies to have their own place for the HR department to advertise
 -   View/Download CV PDF File in job application details page
 - Delete job listing
 - Manage Departments
-- @todo Manage Contract Types
+-  Manage Contract Types
 - Manage Locations
+- @todo Manage Users (admin/hr-representative)
 
 ## License
 

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Job;
-use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Location;
 use App\Models\Department;
