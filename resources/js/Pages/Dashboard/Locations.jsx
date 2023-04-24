@@ -118,7 +118,7 @@ export default function Locations(props) {
                 </h2>
             }
         >
-            <Head title="Jobs Overview" />
+            <Head title="Locations Overview" />
 
             <Modal show={showConfirmation} onClose={() => setShowConfirmation(false)}>
                 <div className="p-5 text-gray-600 dark:text-gray-100 text-lg text-center">

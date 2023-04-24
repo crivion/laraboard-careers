@@ -10,42 +10,42 @@ import { toast } from "react-toastify";
 import { Inertia } from "@inertiajs/inertia";
 import axios from "axios";
 
-export default function contracts(props) {
-    const contracts = props.contracts;
+export default function Users(props) {
+    const users = props.users;
 
-    const [addcontractModal, setAddcontractModal] = useState(false);
+    const [adduserModal, setAdduserModal] = useState(false);
     const [showConfirmation, setShowConfirmation] = useState(false);
 
-    const [contractID, setcontractID] = useState("");
-    const [contractName, setcontractName] = useState("");
+    const [userID, setuserID] = useState("");
+    const [userName, setuserName] = useState("");
 
-    const editcontract = (e, contractID) => {
+    const edituser = (e, userID) => {
         e.preventDefault();
 
-        // get contract info
-        axios.get(route('contracts.show', { contract: contractID }))
+        // get user info
+        axios.get(route('users.show', { user: userID }))
             .then(response => {
-                setcontractID(response.data.id);
-                setcontractName(response.data.contract_type_name);
-                setAddcontractModal(true);
+                setuserID(response.data.id);
+                setuserName(response.data.user_name);
+                setAdduserModal(true);
             }).catch(Error => toast.error(Error.response.data.message));
 
-        console.log(contractID);
+        console.log(userID);
 
     }
 
 
-    const savecontract = (e) => {
+    const saveuser = (e) => {
         e.preventDefault();
 
-        const postURL = contractID !== ""
-            ? route("contracts.update", { contract: contractID })
-            : route("contracts.store");
+        const postURL = userID !== ""
+            ? route("users.update", { user: userID })
+            : route("users.store");
 
         Inertia.visit(postURL, {
-            method: contractID !== "" ? "PUT" : "POST",
+            method: userID !== "" ? "PUT" : "POST",
             data: {
-                contract_type_name: contractName
+                user_name: userName
             },
             onError: (errors) => {
                 for (const [errorField, errorMessage] of Object.entries(
@@ -58,9 +58,9 @@ export default function contracts(props) {
                 console.log(visit);
             },
             onFinish: (response) => {
-                setAddcontractModal(false);
-                setcontractName("");
-                setcontractID("");
+                setAdduserModal(false);
+                setuserName("");
+                setuserID("");
                 console.log("FINISHED", response);
             },
             preserveScroll: false,
@@ -69,10 +69,10 @@ export default function contracts(props) {
 
     }
 
-    const deletecontract = (e) => {
+    const deleteuser = (e) => {
         e.preventDefault();
 
-        Inertia.visit(route('contracts.destroy', { contract: contractID }), {
+        Inertia.visit(route('users.destroy', { user: userID }), {
             method: "DELETE",
             onError: (errors) => {
                 for (const [errorField, errorMessage] of Object.entries(
@@ -85,8 +85,8 @@ export default function contracts(props) {
                 console.log(visit);
             },
             onFinish: (response) => {
-                setcontractName("");
-                setcontractID("");
+                setuserName("");
+                setuserID("");
                 setShowConfirmation(false);
             },
             preserveScroll: true,
@@ -94,17 +94,17 @@ export default function contracts(props) {
         });
     }
 
-    const confirmDelete = (e, contractID) => {
+    const confirmDelete = (e, userID) => {
         e.preventDefault();
 
-        setcontractID(contractID);
+        setuserID(userID);
         setShowConfirmation(true);
     }
 
-    const resetcontract = () => {
-        setAddcontractModal(false);
-        setcontractID("");
-        setcontractName("");
+    const resetuser = () => {
+        setAdduserModal(false);
+        setuserID("");
+        setuserName("");
     }
 
 
@@ -114,18 +114,18 @@ export default function contracts(props) {
             errors={props.errors}
             header={
                 <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                    Contract Types Overview
+                    Users Overview
                 </h2>
             }
         >
-            <Head title="Jobs Overview" />
+            <Head title="Users Overview" />
 
             <Modal show={showConfirmation} onClose={() => setShowConfirmation(false)}>
                 <div className="p-5 text-gray-600 dark:text-gray-100 text-lg text-center">
                     <p className="mb-5">
-                        Are you sure you want to delete this Contract Type?
+                        Are you sure you want to delete this user?
                     </p>
-                    <button className="px-3 py-1.5 bg-rose-500 hover:bg-rose-600 text-sm text-white rounded-md border border-rose-600" onClick={(e) => deletecontract(e)}>
+                    <button className="px-3 py-1.5 bg-rose-500 hover:bg-rose-600 text-sm text-white rounded-md border border-rose-600" onClick={(e) => deleteuser(e)}>
                         Yes
                     </button>
 
@@ -136,26 +136,26 @@ export default function contracts(props) {
                 </div>
             </Modal>
 
-            <Modal show={addcontractModal} onClose={() => resetcontract()}>
+            <Modal show={adduserModal} onClose={() => resetuser()}>
                 <div className="p-6 bg-white">
                     <form>
                         <Label
-                            forInput="contract_type_name"
-                            value="Contract Type"
+                            forInput="user_name"
+                            value="Full Name"
                             className="text-lg mb-2"
                         />
                         <Input
-                            name="contract_type_name"
+                            name="name"
                             className="w-full"
                             handleChange={(e) =>
-                                setcontractName(e.target.value)
+                                setuserName(e.target.value)
                             }
-                            value={contractName}
+                            value={userName}
                             required
                         />
 
-                        <button className="mt-3 inline-flex items-center px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 " onClick={e => savecontract(e)}>
-                            Save Contract Type
+                        <button className="mt-3 inline-flex items-center px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 " onClick={e => saveuser(e)}>
+                            Save user
                         </button>
                     </form>
                 </div>
@@ -164,8 +164,8 @@ export default function contracts(props) {
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-                    <button className="mb-5 inline-flex items-center px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 " onClick={() => setAddcontractModal(true)}>
-                        Create contract
+                    <button className="mb-5 inline-flex items-center px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 " onClick={() => setAdduserModal(true)}>
+                        Create user
                     </button>
 
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -173,27 +173,39 @@ export default function contracts(props) {
                             <TableHead
                                 headings={[
                                     "ID",
-                                    "Contract Type",
-                                    "Jobs Count",
+                                    "Name",
+                                    "Email",
+                                    "Phone",
+                                    "Role",
+                                    "Jobs Posted",
                                     "Actions",
                                 ]}
                             />
                             <tbody>
-                                {contracts.map((contract) => (
-                                    <tr key={contract.id}>
-                                        <TableTd field="ID">{contract.id}</TableTd>
-                                        <TableTd field="Contract Type">
-                                            {contract.contract_type_name}
+                                {users.data.map((user) => (
+                                    <tr key={user.id}>
+                                        <TableTd field="ID">{user.id}</TableTd>
+                                        <TableTd field="Name">
+                                            {user.name}
                                         </TableTd>
-                                        <TableTd field="Jobs Count">
-                                            {contract.jobs_count}
+                                        <TableTd field="Email">
+                                            {user.email}
+                                        </TableTd>
+                                        <TableTd field="Phone">
+                                            {user.contact_phone ?? '--'}
+                                        </TableTd>
+                                        <TableTd field="Role">
+                                            {user.user_type}
+                                        </TableTd>
+                                        <TableTd field="Jobs Posted">
+                                            {user.jobs_count}
                                         </TableTd>
                                         <TableTd field="View">
-                                            <button onClick={e => editcontract(e, contract.id)} className=" px-3 rounded py-1.5 text-green-700 hover:underline font-semibold">
+                                            <button onClick={e => edituser(e, user.id)} className=" px-3 rounded py-1.5 text-green-700 hover:underline font-semibold">
                                                 Edit
                                             </button>
                                             <br />
-                                            <button className=" px-3 rounded py-1.5 text-rose-700 hover:underline font-semibold" onClick={e => confirmDelete(e, contract.id)}>
+                                            <button className=" px-3 rounded py-1.5 text-rose-700 hover:underline font-semibold" onClick={e => confirmDelete(e, user.id)}>
                                                 Delete
                                             </button>
                                         </TableTd>

@@ -32,6 +32,7 @@ Created for companies to have their own place for the HR department to advertise
 -  Manage Contract Types
 - Manage Locations
 - @todo Manage Users (admin/hr-representative)
+- @todo (Add all items in mobile navigation)
 
 ### Dashboard Preview
 ![laraboard dashboard](https://raw.githubusercontent.com/crivion/laraboard-careers/master/public/assets/images/admin-dashboard.png)
@@ -46,6 +47,10 @@ Created for companies to have their own place for the HR department to advertise
 6) Generate an admin user to start with: php artisan laraboard:create-admin
 7) You can login via https://yourdomain.com/dashboard with the user you created at step 6
 8) Link storage folder (where cv pdf's are stored): php artisan storage:link
+9) Install NPM Packages: npm install
+10) Finally, build it: npm run build
+
+And you're ready to advertise your available positions!
 
 
 ## License

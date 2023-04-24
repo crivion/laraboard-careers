@@ -43,6 +43,7 @@ class JobApplicationController extends Controller
 
     public function downloadPDF(JobApplication $jobApplication)
     {
+        $this->authorize('view', $jobApplication);
 
         // pdf file
         $cvPDF = $jobApplication->resume;

@@ -89,9 +89,9 @@ export default function Authenticated({ auth, header, children }) {
                                 {auth.can.admin && (
                                     <>
                                         <NavLink
-                                            href={route("admin.users")}
+                                            href={route("users.index")}
                                             active={route().current(
-                                                "admin.users"
+                                                "users.index"
                                             )}
                                         >
                                             Users
@@ -207,8 +207,8 @@ export default function Authenticated({ auth, header, children }) {
                             <>
 
                                 <ResponsiveNavLink
-                                    href={route("admin.users")}
-                                    active={route().current("admin.users")}
+                                    href={route("users.index")}
+                                    active={route().current("users.index")}
                                 >
                                     Users
                                 </ResponsiveNavLink>
