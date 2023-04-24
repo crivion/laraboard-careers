@@ -6,7 +6,7 @@ export default function Front({ children }) {
     const scroll = useScroll();
 
     return (
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-screen bg-zinc-50">
             <Navbar scroll={scroll} />
 
             <div className="main-content flex-grow min-h-full pb-10">{children}</div>

@@ -20,7 +20,7 @@ export default function Homepage({
         <Front>
             <Head title="LaraBoard" />
             <div className="home-header mb-5">
-                <div className="max-w-screen-xl mx-auto lg:flex items-center space-20 px-3">
+                <div className="max-w-7xl mx-auto lg:flex items-center space-20 px-3">
                     <div className="md:w-2/3">
                         <h1 className="font-bold text-5xl text-blue-800">
                             {t("LaraBoard Careers", lang)}
@@ -39,7 +39,7 @@ export default function Homepage({
                 </div>
             </div>
 
-            <div className="max-w-screen-xl mx-auto flex flex-col-reverse md:flex-row md:space-x-20 px-3">
+            <div className="max-w-7xl mx-auto flex flex-col-reverse md:flex-row md:space-x-10 px-3">
                 <div className="md:w-2/3">
                     {jobs?.data.length > 0
                         ? jobs.data.map((job) => (

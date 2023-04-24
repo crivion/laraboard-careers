@@ -24,7 +24,7 @@ Created for companies to have their own place for the HR department to advertise
 
 -   View and filter Job applications (job, applicant name, applicant status, department, location)
 -   View full details and update status (new, shortlisted, hired, interviewed, dismissed)
--   View and filter Jobs: View / Create / Update / Delete Jobs
+-   View and filter Jobs: View / Create 5/ Update / Delete Jobs
 -   Filter jobs (title/keyword, department, location)
 -   View/Download CV PDF File in job application details page
 - Delete job listing
@@ -32,6 +32,16 @@ Created for companies to have their own place for the HR department to advertise
 -  Manage Contract Types
 - Manage Locations
 - @todo Manage Users (admin/hr-representative)
+
+### Installation Instructions
+1) Clone this repo: git clone https://github.com/crivion/laraboard-careers.git
+2) Install composer dependencies: composer install
+3) Copy .env.example => .env: cp .env.example .env
+4) Configure your database credentials & smtp mail server details in the .env file
+5) Migrate database: php artisan migrate
+6) Generate an admin user to start with: php artisan laraboard:create-admin
+7) You can login via https://yourdomain.com/dashboard with the user you created at step 6
+
 
 ## License
 

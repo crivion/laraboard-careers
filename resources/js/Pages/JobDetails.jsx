@@ -10,7 +10,7 @@ export default function JobDetails({ job, lang }) {
         <Front>
             <Head title={job.job_title} />
             <div className="inner-header my-5">
-                <div className="max-w-screen-xl mx-auto px-3 pt-3">
+                <div className="max-w-screen-xl mx-auto px-6 pt-3">
                     {job.isExpired && (
                         <div className="mt-10 bg-red-100 mb-3 border border-red-400 text-red-700 px-4 py-3 rounded relative">
                             {t("This job is expired and only you can see it while being logged in ", lang)}
@@ -55,9 +55,9 @@ export default function JobDetails({ job, lang }) {
                 </div>
             </div>
 
-            <div className="max-w-screen-xl mx-auto lg:flex space-20 px-3">
+            <div className="max-w-7xl mx-auto lg:flex lg:space-x-10 px-3 lg:px-0">
                 <div className="lg:w-2/3">
-                    <div className="job-detail-description text-neutral-800">
+                    <div className="job-detail-description text-neutral-800 bg-white rounded-lg shadow-sm p-5">
                         <h3 className="title text-xl font-semibold mb-3">
                             {t("Job Description", lang)}
                         </h3>
