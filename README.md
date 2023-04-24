@@ -33,6 +33,10 @@ Created for companies to have their own place for the HR department to advertise
 - Manage Locations
 - @todo Manage Users (admin/hr-representative)
 
+
+![laraboard dashboard](https://raw.githubusercontent.com/crivion/laraboard-careers/master/public/assets/images/admin-dashboard.png)
+![laraboard jobs](https://raw.githubusercontent.com/crivion/laraboard-careers/master/public/assets/images/admin-jobs.png)
+
 ### Installation Instructions
 1) Clone this repo: git clone https://github.com/crivion/laraboard-careers.git
 2) Install composer dependencies: composer install
