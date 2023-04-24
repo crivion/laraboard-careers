@@ -7,7 +7,7 @@ Created for companies to have their own place for the HR department to advertise
 -   ReactJS Frontend via InertiaJS Laravel
 -   The industry standard database - MySQL
 
-## Preview
+## Frontpage Preview
 
 ![laraboard preview](https://raw.githubusercontent.com/crivion/laraboard-careers/master/public/assets/images/laraboard-preview.png)
 
@@ -33,7 +33,7 @@ Created for companies to have their own place for the HR department to advertise
 - Manage Locations
 - @todo Manage Users (admin/hr-representative)
 
-
+### Dashboard Preview
 ![laraboard dashboard](https://raw.githubusercontent.com/crivion/laraboard-careers/master/public/assets/images/admin-dashboard.png)
 ![laraboard jobs](https://raw.githubusercontent.com/crivion/laraboard-careers/master/public/assets/images/admin-jobs.png)
 
