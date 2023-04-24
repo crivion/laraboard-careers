@@ -65,18 +65,15 @@ export default function Authenticated({ auth, header, children }) {
                                 <NavLink
                                     href={route("departments.index")}
                                     active={
-                                        route().current("departments.index") ||
-                                        route().current("departments.create") ||
-                                        route().current("departments.edit")
+                                        route().current("departments.index")
                                     }
                                 >
                                     Departments
                                 </NavLink>
                                 <NavLink
-                                    href={route("jobs.index")}
+                                    href={route("locations.index")}
                                     active={
-                                        route().current("locations.index") ||
-                                        route().current("locations.create")
+                                        route().current("locations.index")
                                     }
                                 >
                                     Locations
@@ -84,8 +81,7 @@ export default function Authenticated({ auth, header, children }) {
                                 <NavLink
                                     href={route("jobs.index")}
                                     active={
-                                        route().current("locations.index") ||
-                                        route().current("locations.create")
+                                        route().current("locations.index")
                                     }
                                 >
                                     Contract Types

@@ -15,4 +15,9 @@ class Location extends Model
 
     // no timestamps
     public $timestamps = false;
+
+    public function jobs()
+    {
+        return $this->hasMany(Job::class);
+    }
 }

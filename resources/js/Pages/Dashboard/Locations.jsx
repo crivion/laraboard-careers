@@ -10,42 +10,42 @@ import { toast } from "react-toastify";
 import { Inertia } from "@inertiajs/inertia";
 import axios from "axios";
 
-export default function Departments(props) {
-    const departments = props.departments;
+export default function Locations(props) {
+    const locations = props.locations;
 
-    const [addDepartmentModal, setAddDepartmentModal] = useState(false);
+    const [addlocationModal, setAddlocationModal] = useState(false);
     const [showConfirmation, setShowConfirmation] = useState(false);
 
-    const [departmentID, setDepartmentID] = useState("");
-    const [departmentName, setDepartmentName] = useState("");
+    const [locationID, setlocationID] = useState("");
+    const [locationName, setlocationName] = useState("");
 
-    const editDepartment = (e, departmentID) => {
+    const editlocation = (e, locationID) => {
         e.preventDefault();
 
-        // get department info
-        axios.get(route('departments.show', { department: departmentID }))
+        // get location info
+        axios.get(route('locations.show', { location: locationID }))
             .then(response => {
-                setDepartmentID(response.data.id);
-                setDepartmentName(response.data.department_name);
-                setAddDepartmentModal(true);
+                setlocationID(response.data.id);
+                setlocationName(response.data.location_name);
+                setAddlocationModal(true);
             }).catch(Error => toast.error(Error.response.data.message));
 
-        console.log(departmentID);
+        console.log(locationID);
 
     }
 
 
-    const saveDepartment = (e) => {
+    const savelocation = (e) => {
         e.preventDefault();
 
-        const postURL = departmentID !== ""
-            ? route("departments.update", { department: departmentID })
-            : route("departments.store");
+        const postURL = locationID !== ""
+            ? route("locations.update", { location: locationID })
+            : route("locations.store");
 
         Inertia.visit(postURL, {
-            method: departmentID !== "" ? "PUT" : "POST",
+            method: locationID !== "" ? "PUT" : "POST",
             data: {
-                department_name: departmentName
+                location_name: locationName
             },
             onError: (errors) => {
                 for (const [errorField, errorMessage] of Object.entries(
@@ -58,9 +58,9 @@ export default function Departments(props) {
                 console.log(visit);
             },
             onFinish: (response) => {
-                setAddDepartmentModal(false);
-                setDepartmentName("");
-                setDepartmentID("");
+                setAddlocationModal(false);
+                setlocationName("");
+                setlocationID("");
                 console.log("FINISHED", response);
             },
             preserveScroll: false,
@@ -69,10 +69,10 @@ export default function Departments(props) {
 
     }
 
-    const deleteDepartment = (e) => {
+    const deletelocation = (e) => {
         e.preventDefault();
 
-        Inertia.visit(route('departments.destroy', { department: departmentID }), {
+        Inertia.visit(route('locations.destroy', { location: locationID }), {
             method: "DELETE",
             onError: (errors) => {
                 for (const [errorField, errorMessage] of Object.entries(
@@ -85,8 +85,8 @@ export default function Departments(props) {
                 console.log(visit);
             },
             onFinish: (response) => {
-                setDepartmentName("");
-                setDepartmentID("");
+                setlocationName("");
+                setlocationID("");
                 setShowConfirmation(false);
             },
             preserveScroll: true,
@@ -94,17 +94,17 @@ export default function Departments(props) {
         });
     }
 
-    const confirmDelete = (e, departmentID) => {
+    const confirmDelete = (e, locationID) => {
         e.preventDefault();
 
-        setDepartmentID(departmentID);
+        setlocationID(locationID);
         setShowConfirmation(true);
     }
 
-    const resetDepartment = () => {
-        setAddDepartmentModal(false);
-        setDepartmentID("");
-        setDepartmentName("");
+    const resetlocation = () => {
+        setAddlocationModal(false);
+        setlocationID("");
+        setlocationName("");
     }
 
 
@@ -114,7 +114,7 @@ export default function Departments(props) {
             errors={props.errors}
             header={
                 <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                    Departments Overview
+                    Locations Overview
                 </h2>
             }
         >
@@ -123,9 +123,9 @@ export default function Departments(props) {
             <Modal show={showConfirmation} onClose={() => setShowConfirmation(false)}>
                 <div className="p-5 text-gray-600 dark:text-gray-100 text-lg text-center">
                     <p className="mb-5">
-                        Are you sure you want to delete this department?
+                        Are you sure you want to delete this location?
                     </p>
-                    <button className="px-3 py-1.5 bg-rose-500 hover:bg-rose-600 text-sm text-white rounded-md border border-rose-600" onClick={(e) => deleteDepartment(e)}>
+                    <button className="px-3 py-1.5 bg-rose-500 hover:bg-rose-600 text-sm text-white rounded-md border border-rose-600" onClick={(e) => deletelocation(e)}>
                         Yes
                     </button>
 
@@ -136,26 +136,26 @@ export default function Departments(props) {
                 </div>
             </Modal>
 
-            <Modal show={addDepartmentModal} onClose={() => resetDepartment()}>
+            <Modal show={addlocationModal} onClose={() => resetlocation()}>
                 <div className="p-6 bg-white">
                     <form>
                         <Label
-                            forInput="department_name"
-                            value="Department Name"
+                            forInput="location_name"
+                            value="Location Name"
                             className="text-lg mb-2"
                         />
                         <Input
-                            name="department_name"
+                            name="location_name"
                             className="w-full"
                             handleChange={(e) =>
-                                setDepartmentName(e.target.value)
+                                setlocationName(e.target.value)
                             }
-                            value={departmentName}
+                            value={locationName}
                             required
                         />
 
-                        <button className="mt-3 inline-flex items-center px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 " onClick={e => saveDepartment(e)}>
-                            Save Department
+                        <button className="mt-3 inline-flex items-center px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 " onClick={e => savelocation(e)}>
+                            Save location
                         </button>
                     </form>
                 </div>
@@ -164,8 +164,8 @@ export default function Departments(props) {
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-                    <button className="mb-5 inline-flex items-center px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 " onClick={() => setAddDepartmentModal(true)}>
-                        Create Department
+                    <button className="mb-5 inline-flex items-center px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 " onClick={() => setAddlocationModal(true)}>
+                        Create location
                     </button>
 
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -173,27 +173,27 @@ export default function Departments(props) {
                             <TableHead
                                 headings={[
                                     "ID",
-                                    "Department Name",
+                                    "location Name",
                                     "Jobs Count",
                                     "Actions",
                                 ]}
                             />
                             <tbody>
-                                {departments.map((department) => (
-                                    <tr key={department.id}>
-                                        <TableTd field="ID">{department.id}</TableTd>
-                                        <TableTd field="Department Name">
-                                            {department.department_name}
+                                {locations.map((location) => (
+                                    <tr key={location.id}>
+                                        <TableTd field="ID">{location.id}</TableTd>
+                                        <TableTd field="location Name">
+                                            {location.location_name}
                                         </TableTd>
                                         <TableTd field="Jobs Count">
-                                            {department.jobs_count}
+                                            {location.jobs_count}
                                         </TableTd>
                                         <TableTd field="View">
-                                            <button onClick={e => editDepartment(e, department.id)} className=" px-3 rounded py-1.5 text-green-700 hover:underline font-semibold">
+                                            <button onClick={e => editlocation(e, location.id)} className=" px-3 rounded py-1.5 text-green-700 hover:underline font-semibold">
                                                 Edit
                                             </button>
                                             <br />
-                                            <button className=" px-3 rounded py-1.5 text-rose-700 hover:underline font-semibold" onClick={e => confirmDelete(e, department.id)}>
+                                            <button className=" px-3 rounded py-1.5 text-rose-700 hover:underline font-semibold" onClick={e => confirmDelete(e, location.id)}>
                                                 Delete
                                             </button>
                                         </TableTd>

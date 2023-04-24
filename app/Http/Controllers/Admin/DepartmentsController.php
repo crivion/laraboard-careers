@@ -111,7 +111,7 @@ class DepartmentsController extends Controller
 
         $department->delete();
 
-        session()->flash('message', 'Successfully deleted department');
+        session()->flash('success', 'Successfully deleted department');
 
         return back();
     }

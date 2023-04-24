@@ -30,7 +30,7 @@ Created for companies to have their own place for the HR department to advertise
 - Delete job listing
 - Manage Departments
 - @todo Manage Contract Types
-- @todo Manage Locations
+- Manage Locations
 
 ## License
 

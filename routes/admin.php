@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\JobsController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DepartmentsController;
 use App\Http\Controllers\Admin\JobApplicationController;
+use App\Http\Controllers\Admin\LocationsController;
 
 Route::middleware(['auth', 'admin'])->prefix('dashboard')->group(function () {
     Route::get('/', DashboardController::class)->name('dashboard');
@@ -13,6 +14,7 @@ Route::middleware(['auth', 'admin'])->prefix('dashboard')->group(function () {
     Route::patch('job-application/{jobApplication}/update-status', [JobApplicationController::class, 'updateStatus'])->name('job-application.update-status');
     Route::get('job-application/download-cv/{jobApplication}', [JobApplicationController::class, 'downloadPDF'])->name('job-application.download-cv');
     Route::resource('departments', DepartmentsController::class);
+    Route::resource('locations', LocationsController::class);
     Route::get('users', fn () => 'jobs admin')->name('admin.users');
 });
 
