@@ -4,9 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Models\Job;
 use App\Models\JobApplication;
+use App\Notifications\AccountCreatedNotification;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -33,7 +37,34 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->authorize("viewAny", auth()->user());
+
+        $request->validate([
+            "name" => "required",
+            "email" => "required|email|unique:users,email",
+            "user_type" => "required|in:admin,hr-representative",
+        ]);
+
+        // generate a password
+        $password = Str::random(12);
+
+        $user = User::create([
+            "name" => $request->name,
+            "email" => $request->email,
+            "user_type" => $request->user_type,
+            "password" => Hash::make($password),
+            "contact_phone" => $request->contact_phone,
+        ]);
+
+        // send email to user with password
+        $user->notify(new AccountCreatedNotification($user, $password));
+
+        session()->flash(
+            "success",
+            "User successfully created and account details mailed."
+        );
+
+        return back();
     }
 
     /**
@@ -92,7 +123,7 @@ class UsersController extends Controller
         JobApplication::whereIn("job_id", $user->jobs->pluck("id"))->delete();
 
         // delete the jobs
-        $user->jobs()->delete();
+        Job::whereIn("id", $user->jobs->pluck("id"))->delete();
 
         // finally, remove the user
         $user->delete();

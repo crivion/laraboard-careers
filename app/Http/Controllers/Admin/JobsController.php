@@ -96,7 +96,6 @@ class JobsController extends Controller
         return redirect()->route("jobs.index");
     }
 
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -153,6 +152,6 @@ class JobsController extends Controller
 
         session()->flash("success", "Job archived");
 
-        return redirect()->route('jobs.index');
+        return redirect()->route("jobs.index");
     }
 }

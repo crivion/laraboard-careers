@@ -2,14 +2,13 @@
 
 namespace App\Notifications;
 
-use App\Models\JobApplication;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use App\Models\User;
 
-class JobApplicationReceivedNotification extends Notification implements
-    ShouldQueue
+class AccountCreatedNotification extends Notification
 {
     use Queueable;
 
@@ -18,11 +17,13 @@ class JobApplicationReceivedNotification extends Notification implements
      *
      * @return void
      */
-    public $application;
+    public $user;
+    public $password;
 
-    public function __construct(JobApplication $application)
+    public function __construct(User $user, string $password)
     {
-        $this->application = $application;
+        $this->user = $user;
+        $this->password = $password;
     }
 
     /**
@@ -45,27 +46,16 @@ class JobApplicationReceivedNotification extends Notification implements
     public function toMail($notifiable)
     {
         return (new MailMessage())
-            ->subject(__("New Job Application"))
+            ->subject(__("Your Account Details"))
             ->line(__("Hey :name,", ["name" => $notifiable->name]))
             ->line(
-                __("You have just received a new job application for :job", [
-                    "job" => $this->application->job->job_title,
+                __("Your account with role :user_type has been created!", [
+                    $this->user->user_type,
                 ])
             )
+            ->line(__("Login Email: :email", ["email" => $this->user->email]))
             ->line(
-                __("Applicant name: :applicantName", [
-                    "applicantName" => $this->application->name,
-                ])
-            )
-            ->line(
-                __("Applicant phone: :applicantPhone", [
-                    "applicantPhone" => $this->application->phone,
-                ])
-            )
-            ->line(
-                __("Applicant email: :applicantEmail", [
-                    "applicantEmail" => $this->application->email,
-                ])
+                __("Login Password: :password", ["password" => $this->password])
             )
             ->action(__("Go to dashboard"), url(route("dashboard")))
             ->line(__("Regards"));
