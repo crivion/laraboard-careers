@@ -64,25 +64,21 @@ export default function Authenticated({ auth, header, children }) {
                                 </NavLink>
                                 <NavLink
                                     href={route("departments.index")}
-                                    active={
-                                        route().current("departments.index")
-                                    }
+                                    active={route().current(
+                                        "departments.index"
+                                    )}
                                 >
                                     Departments
                                 </NavLink>
                                 <NavLink
                                     href={route("locations.index")}
-                                    active={
-                                        route().current("locations.index")
-                                    }
+                                    active={route().current("locations.index")}
                                 >
                                     Locations
                                 </NavLink>
                                 <NavLink
                                     href={route("contracts.index")}
-                                    active={
-                                        route().current("contracts.index")
-                                    }
+                                    active={route().current("contracts.index")}
                                 >
                                     Contract Types
                                 </NavLink>
@@ -203,9 +199,26 @@ export default function Authenticated({ auth, header, children }) {
                         >
                             Jobs
                         </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route("departments.index")}
+                            active={route().current("departments.index")}
+                        >
+                            Departments
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route("locations.index")}
+                            active={route().current("locations.index")}
+                        >
+                            Locations
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route("contracts.index")}
+                            active={route().current("contracts.index")}
+                        >
+                            Contract Types
+                        </ResponsiveNavLink>
                         {auth.can.admin && (
                             <>
-
                                 <ResponsiveNavLink
                                     href={route("users.index")}
                                     active={route().current("users.index")}

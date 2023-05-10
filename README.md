@@ -31,8 +31,6 @@ Created for companies to have their own place for the HR department to advertise
 -   Manage Departments
 -   Manage Contract Types
 -   Manage Locations
--   @todo Add New User (Send Email Notification upon account creation)
--   @todo (Add all items in mobile navigation)
 
 ### Dashboard Preview
 
