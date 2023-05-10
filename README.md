@@ -11,8 +11,6 @@ Created for companies to have their own place for the HR department to advertise
 
 ![laraboard preview](https://raw.githubusercontent.com/crivion/laraboard-careers/master/public/assets/images/laraboard-preview.png)
 
-## WORK IS IN PROGRESS
-
 ### Frontend
 
 -   Homepage with all the open (not expired) job/careers listings
@@ -39,6 +37,7 @@ Created for companies to have their own place for the HR department to advertise
 
 ### Installation Instructions
 
+```
 1. Clone this repo: git clone https://github.com/crivion/laraboard-careers.git
 2. Install composer dependencies: composer install
 3. Copy .env.example => .env: cp .env.example .env
@@ -49,6 +48,7 @@ Created for companies to have their own place for the HR department to advertise
 8. Link storage folder (where cv pdf's are stored): php artisan storage:link
 9. Install NPM Packages: npm install
 10. Finally, build it: npm run build
+```
 
 And you're ready to advertise your available positions!
 
