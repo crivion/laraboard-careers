@@ -27,31 +27,32 @@ Created for companies to have their own place for the HR department to advertise
 -   View and filter Jobs: View / Create 5/ Update / Delete Jobs
 -   Filter jobs (title/keyword, department, location)
 -   View/Download CV PDF File in job application details page
-- Delete job listing
-- Manage Departments
--  Manage Contract Types
-- Manage Locations
-- @todo Manage Users (admin/hr-representative)
-- @todo (Add all items in mobile navigation)
+-   Delete job listing
+-   Manage Departments
+-   Manage Contract Types
+-   Manage Locations
+-   @todo Add New User (Send Email Notification upon account creation)
+-   @todo (Add all items in mobile navigation)
 
 ### Dashboard Preview
+
 ![laraboard dashboard](https://raw.githubusercontent.com/crivion/laraboard-careers/master/public/assets/images/admin-dashboard.png)
 ![laraboard jobs](https://raw.githubusercontent.com/crivion/laraboard-careers/master/public/assets/images/admin-jobs.png)
 
 ### Installation Instructions
-1) Clone this repo: git clone https://github.com/crivion/laraboard-careers.git
-2) Install composer dependencies: composer install
-3) Copy .env.example => .env: cp .env.example .env
-4) Configure your database credentials & smtp mail server details in the .env file
-5) Migrate database: php artisan migrate
-6) Generate an admin user to start with: php artisan laraboard:create-admin
-7) You can login via https://yourdomain.com/dashboard with the user you created at step 6
-8) Link storage folder (where cv pdf's are stored): php artisan storage:link
-9) Install NPM Packages: npm install
-10) Finally, build it: npm run build
+
+1. Clone this repo: git clone https://github.com/crivion/laraboard-careers.git
+2. Install composer dependencies: composer install
+3. Copy .env.example => .env: cp .env.example .env
+4. Configure your database credentials & smtp mail server details in the .env file
+5. Migrate database: php artisan migrate
+6. Generate an admin user to start with: php artisan laraboard:create-admin
+7. You can login via https://yourdomain.com/dashboard with the user you created at step 6
+8. Link storage folder (where cv pdf's are stored): php artisan storage:link
+9. Install NPM Packages: npm install
+10. Finally, build it: npm run build
 
 And you're ready to advertise your available positions!
-
 
 ## License
 

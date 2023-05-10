@@ -23,8 +23,10 @@
         "vite": "^3.0.0"
     },
     "dependencies": {
+        "@prettier/plugin-php": "^0.19.4",
         "@tinymce/tinymce-react": "^4.1.0",
         "fs-extra": "^10.1.0",
+        "prettier": "^2.8.8",
         "react-icons": "^4.4.0",
         "react-select": "^5.4.0",
         "react-toastify": "^9.0.7",
