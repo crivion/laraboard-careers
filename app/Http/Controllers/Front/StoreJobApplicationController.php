@@ -16,10 +16,10 @@ class StoreJobApplicationController extends Controller
         $validated = $request->validated();
 
         // append resume
-        $validated['resume'] = $request->file('resume')->store('resumes');
+        $validated["resume"] = $request->file("resume")->store("resumes");
 
         // append coverLetter
-        $validated['cover_letter'] = request('coverLetter');
+        $validated["cover_letter"] = request("coverLetter");
 
         // create job application
         $application = $job->applications()->create($validated);
@@ -28,11 +28,11 @@ class StoreJobApplicationController extends Controller
         event(new JobApplicationReceivedEvent($application));
 
         // redirect with success message
-        return redirect()->route('jobApplicationReceived', ['job' => $job]);
+        return redirect()->route("jobApplicationReceived", ["job" => $job]);
     }
 
     public function applicationReceived(Job $job)
     {
-        return Inertia::render('JobApplicationReceived', compact('job'));
+        return Inertia::render("JobApplicationReceived", compact("job"));
     }
 }
